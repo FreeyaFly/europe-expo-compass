@@ -113,7 +113,8 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = urlparse(self.path).path
         if path == '/api/ping':
-            return self._send(200, {'ok': True, 'app': 'expo-compass'})
+            # `data` lets tools/update_catalog.py tell this copy apart from another Expo Compass folder
+            return self._send(200, {'ok': True, 'app': 'expo-compass', 'data': str(self.store.file.resolve())})
         if path == '/api/data':
             if not self._same_origin():
                 return self._send(403, {'error': 'forbidden'})

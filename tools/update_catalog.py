@@ -14,6 +14,7 @@ Rules:
 """
 import datetime
 import json
+import os
 import shutil
 import sys
 import urllib.error
@@ -24,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / 'catalog' / 'fairs.json'
 DATA = ROOT / 'data' / 'expo.json'
-PORT = 8766
+PORT = int(os.environ.get('EXPO_PORT', 8766))
 
 INDUSTRIES = {'tech', 'telecom', 'finance', 'energy', 'industry', 'logistics', 'health', 'food', 'build', 'auto',
               'fashion', 'sport', 'maritime', 'retail', 'policy', 'media'}
@@ -65,12 +66,18 @@ def check(catalog):
     return errors
 
 
-def server_up():
+def server_state():
+    """'none' (nothing running), 'ours' (the local program of THIS folder) or 'other' (another copy, or an
+    older version that does not say which data file it serves)."""
     try:
         with urllib.request.urlopen(f'http://127.0.0.1:{PORT}/api/ping', timeout=2) as r:
-            return json.load(r).get('app') == 'expo-compass'
+            info = json.load(r)
     except (urllib.error.URLError, OSError, ValueError):
-        return False
+        return 'none'
+    if info.get('app') != 'expo-compass':
+        return 'other'
+    served = info.get('data')
+    return 'ours' if served and Path(served).resolve() == DATA.resolve() else 'other'
 
 
 def send(method, col, doc_id, body=None):
@@ -113,7 +120,12 @@ def main():
         print('\n这只是预览。确认无误后加 --apply 执行。')
         return
     meta = catalog.get('meta', {})
-    if server_up():
+    state = server_state()
+    if state == 'other':
+        print(f'\n端口 {PORT} 上运行的是另一份 Expo Compass（不是这个文件夹的），或者是旧版本的本地程序。\n'
+              '为了不写错地方，这次没有做任何修改。请关掉正在运行的本地程序（任务管理器里结束 pythonw.exe）后再运行。')
+        sys.exit(1)
+    if state == 'ours':
         for i in added + list(changed):
             send('PUT', 'fairs', i, new[i])
         for i in removed:
