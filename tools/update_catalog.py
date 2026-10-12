@@ -143,7 +143,8 @@ def main():
     state = server_state()
     if state == 'other':
         print(f'\n端口 {PORT} 上运行的是另一份 Expo Compass（不是这个文件夹的），或者是旧版本的本地程序。\n'
-              '为了不写错地方，这次没有做任何修改。请关掉正在运行的本地程序（任务管理器里结束 pythonw.exe）后再运行。')
+              '为了不写错地方，这次没有做任何修改。请先在 PowerShell 里运行下面这条命令，关掉占用这个端口的本地程序，再重新运行：\n'
+              f'  Get-NetTCPConnection -LocalPort {PORT} -State Listen | ForEach-Object {{ Stop-Process -Id $_.OwningProcess }}')
         sys.exit(1)
     if state == 'ours':
         for i in added + list(changed):
