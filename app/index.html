@@ -1,0 +1,711 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>[hidden]{display:none!important}body{margin:0}</style></head><body>
+<title>Europe Expo Compass</title>
+
+<style>
+/* Layout: exhibition-hall wayfinding — a filter rail on the left, the fair list as hall signs with amber date badges; detail slides in from the right. */
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --sunken:#E8EBE6; --ink:#17201D; --muted:#5B6863; --line:#D5DAD3;
+  --sign:#DCE8F7; --sign-ink:#1B4F8C; --dot:#2E6DB4; --teal:#1C6A60; --teal-soft:#DCEDE9; --ok:#2E7A4C; --warn:#B0560B; --warn-soft:#FBEBDD;
+  --f-display:"Barlow Condensed","Arial Narrow","Noto Sans SC",sans-serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --surface:#19211F; --sunken:#0D1311; --ink:#E6ECE8; --muted:#97A49F; --line:#2B3532;
+  --sign:#1B2E47; --sign-ink:#9CC3F0; --dot:#9CC3F0; --teal:#63C4B5; --teal-soft:#1D3531; --ok:#6CC08B; --warn:#F0A060; --warn-soft:#3A2A1C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --surface:#19211F; --sunken:#0D1311; --ink:#E6ECE8; --muted:#97A49F; --line:#2B3532;
+  --sign:#1B2E47; --sign-ink:#9CC3F0; --dot:#9CC3F0; --teal:#63C4B5; --teal-soft:#1D3531; --ok:#6CC08B; --warn:#F0A060; --warn-soft:#3A2A1C; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.55}
+a{color:var(--teal)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:20px 48px}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.brand h1{font-family:var(--f-display);font-weight:700;font-size:40px;line-height:1;letter-spacing:.01em;margin:0;text-wrap:balance}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.stats{display:flex;gap:20px;font-variant-numeric:tabular-nums}
+.stat b{display:block;font-family:var(--f-display);font-size:28px;line-height:1;font-weight:600}
+.stat small{color:var(--muted);font-size:12px}
+
+main{margin-top:18px}
+
+/* filter bar: one row of dropdowns, quick toggles at the end, active filters underneath */
+.fbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dd{position:relative}
+.ddbtn{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:6px 10px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.ddbtn:hover{border-color:var(--muted)}
+.ddbtn[aria-expanded="true"]{border-color:var(--ink)}
+.ddbtn.on{border-color:var(--ink);font-weight:500}
+.ddbtn .n{font-family:var(--f-mono);font-size:11px;background:var(--ink);color:var(--surface);border-radius:2px;padding:0 5px}
+.ddbtn .car{font-size:10px;color:var(--muted)}
+.ddpanel{position:absolute;top:calc(100% + 6px);left:0;z-index:10;min-width:230px;max-width:calc(100vw - 32px);max-height:380px;overflow:auto;background:var(--surface);border:1px solid var(--ink);border-radius:6px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.ddpanel.right{left:auto;right:0}
+.ddpanel .hint{font-size:12px;color:var(--muted);padding:4px 8px 6px}
+.opt{display:flex;align-items:center;gap:9px;width:100%;border:0;background:transparent;border-radius:3px;padding:6px 8px;cursor:pointer;text-align:left}
+.opt:hover:not(:disabled){background:var(--sunken)}
+.opt:disabled{color:var(--muted);opacity:.5;cursor:default}
+.opt .box{width:14px;height:14px;border:1.5px solid var(--muted);border-radius:2px;flex:none}
+.opt[aria-checked="true"] .box{background:var(--ink);border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--surface)}
+.opt.hl[aria-checked="true"] .box{background:var(--teal);border-color:var(--teal)}
+.opt .lbl{flex:1}
+.opt .cnt{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sep{width:1px;align-self:stretch;background:var(--line);margin:2px 4px}
+.qt{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 11px;cursor:pointer;font-size:12.5px;white-space:nowrap}
+.qt:hover{border-color:var(--muted)}
+.qt[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+.active{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;min-height:0}
+.active:empty{display:none}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;background:var(--sunken);border-radius:3px;padding:2px 4px 2px 8px}
+.pill small{color:var(--muted)}
+.pill button{border:0;background:transparent;cursor:pointer;padding:0 4px;font-size:13px;line-height:1;color:var(--muted)}
+.pill button:hover{color:var(--ink)}
+.clear{background:none;border:0;padding:0 4px;color:var(--teal);cursor:pointer;font-size:12.5px;text-decoration:underline}
+
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.search{flex:1 1 220px;min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:7px 10px}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:4px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:6px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button+button{border-left:1px solid var(--line)}
+.count{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+
+/* list */
+.month{margin:22px 0 8px;display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.month:first-child{margin-top:0}
+.month h2{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0;letter-spacing:.02em}
+.month span{color:var(--muted);font-size:12px}
+.fair{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin-top:8px;cursor:pointer}
+.fair:hover{border-color:var(--muted)}
+.fair.dim{opacity:.55}
+.badge{background:var(--sign);color:var(--sign-ink);border-radius:3px;text-align:center;padding:5px 2px 6px;font-family:var(--f-display);line-height:1}
+.badge .m{font-size:13px;font-weight:600;letter-spacing:.1em}
+.badge .d{font-size:24px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.badge.past{background:var(--sunken);color:var(--muted)}
+.fair .name{font-weight:700;font-size:15px;line-height:1.35}
+.fair .where{color:var(--muted);font-size:12.5px;margin-top:2px}
+.cc{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border-radius:2px;padding:0 4px;margin-right:6px;color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.tag{font-size:11.5px;background:var(--sunken);border-radius:2px;padding:1px 6px;color:var(--ink)}
+.tag.job{background:var(--teal-soft);color:var(--teal)}
+.side{display:grid;justify-items:end;gap:6px;text-align:right}
+.scale{font-family:var(--f-display);font-size:14px;font-weight:600;letter-spacing:.06em;white-space:nowrap}
+.scale i{font-style:normal;color:var(--dot)}
+.warnpill{font-size:11px;color:var(--warn);background:var(--warn-soft);border-radius:2px;padding:1px 6px;white-space:nowrap}
+.scale.est{opacity:.55}
+.dlpill{font-size:11px;color:var(--teal);border:1px dashed var(--teal);border-radius:2px;padding:0 6px;white-space:nowrap}
+.cancel .name{text-decoration:line-through}
+.prev{margin-top:8px;padding:8px 10px;border-left:3px solid var(--line);font-size:12.5px;color:var(--muted);white-space:pre-wrap}
+.prev b{color:var(--ink);font-weight:500}
+.mine{font-size:11.5px;border:1px solid var(--teal);color:var(--teal);border-radius:2px;padding:0 6px;white-space:nowrap}
+.mine.strong{background:var(--teal);color:var(--surface)}
+.togo{font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+@media (max-width:560px){.fair{grid-template-columns:64px minmax(0,1fr)}.side{grid-column:2;justify-items:start;text-align:left;display:flex;flex-wrap:wrap;gap:6px}.badge .d{font-size:20px}}
+
+/* timeline */
+.tl{overflow-x:auto;border:1px solid var(--line);background:var(--surface);border-radius:6px}
+.tl-in{min-width:820px;position:relative;padding:0 12px 12px}
+.tl-head{display:grid;grid-template-columns:210px 1fr;position:sticky;top:0;background:var(--surface);z-index:2;border-bottom:1px solid var(--line)}
+.tl-months{position:relative;height:34px}
+.tl-months span{position:absolute;top:10px;font-family:var(--f-display);font-weight:600;font-size:14px;letter-spacing:.04em;padding-left:4px;border-left:1px solid var(--line);height:24px}
+.tl-row{display:grid;grid-template-columns:210px 1fr;align-items:center;min-height:30px;cursor:pointer}
+.tl-row:hover .tl-label{color:var(--teal)}
+.tl-label{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:10px}
+.tl-track{position:relative;height:30px}
+.tl-grid{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+.tl-bar{position:absolute;top:9px;height:12px;border-radius:2px;background:var(--muted);min-width:5px}
+.tl-bar.job{background:var(--teal)}
+.tl-bar.go{background:var(--dot)}
+.tl-today{position:absolute;top:0;bottom:0;border-left:2px dashed var(--warn);z-index:1}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);margin:10px 2px 0}
+.legend i{display:inline-block;width:18px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+.empty{border:1px dashed var(--line);border-radius:6px;padding:28px;text-align:center;color:var(--muted)}
+
+/* detail drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,14,12,.35);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--surface);border-left:2px solid var(--ink);z-index:21;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px calc(env(safe-area-inset-bottom,0px) + 28px)}
+.drawer .x{float:right;border:1px solid var(--line);background:transparent;border-radius:4px;padding:2px 10px;cursor:pointer}
+.drawer h2{font-family:var(--f-display);font-size:30px;line-height:1.05;margin:4px 0 6px;font-weight:700;text-wrap:balance}
+.drawer .when{font-family:var(--f-mono);font-size:13px}
+.drawer .hl{margin:14px 0;padding:10px 12px;background:var(--sunken);border-radius:4px}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:14px 0;font-size:13px}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0}
+.sec{margin-top:20px}
+.sec h3{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:500}
+.stbtns{display:flex;flex-wrap:wrap;gap:6px}
+.stbtns button{border:1px solid var(--line);background:transparent;border-radius:3px;padding:4px 10px;cursor:pointer}
+.stbtns button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+textarea{width:100%;min-height:120px;border:1px solid var(--line);background:var(--bg);border-radius:4px;padding:8px;resize:vertical}
+.saved{font-size:12px;color:var(--muted);margin-top:4px;min-height:18px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.btnlink{display:inline-block;border:1px solid var(--ink);border-radius:4px;padding:5px 12px;text-decoration:none;color:var(--ink)}
+.btnlink.primary{background:var(--ink);color:var(--surface)}
+.verify{font-size:12.5px;color:var(--muted)}
+.verify b{color:var(--ok);font-weight:500}
+.verify b.w{color:var(--warn)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);background:var(--ink);color:var(--surface);padding:8px 14px;border-radius:4px;z-index:30;font-size:13px}
+@media (prefers-reduced-motion:no-preference){.drawer{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(24px);opacity:.6}}}
+</style>
+<style id="local-fonts">
+/* local build: Windows system fonts instead of Google Fonts, so the app works without internet */
+:root{--f-display:"Bahnschrift","Arial Narrow",sans-serif;--f-body:"Microsoft YaHei UI","Microsoft YaHei",system-ui,sans-serif;--f-mono:Consolas,"Cascadia Mono",monospace}
+.brand h1,.badge,.month h2,.scale,.drawer h2,.stat b,.tl-months span{font-stretch:condensed}
+</style>
+<link rel="icon" href="icon.ico">
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Europe Expo Compass</h1>
+      <p>欧洲 B2B 展会与会议 · <span id="cov">12 国</span> · <span id="upd">目录更新日期读取中</span></p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <main>
+      <div class="toolbar">
+        <input id="q" class="search" type="search" placeholder="搜索展会、城市、公司…" aria-label="搜索">
+        <div class="seg" role="group" aria-label="时间范围" id="range">
+          <button data-r="3">3 个月</button><button data-r="6">6 个月</button><button data-r="12">12 个月</button><button data-r="all">全部</button>
+        </div>
+        <div class="seg" role="group" aria-label="视图">
+          <button id="v-list" aria-pressed="true">列表</button>
+          <button id="v-tl" aria-pressed="false">时间轴</button>
+        </div>
+        <span class="count" id="rcount"></span>
+        <span id="exports" hidden style="display:inline-flex;gap:6px;flex-wrap:wrap">
+          <button class="qt" id="ex-go" title="把标了「要去」或「已报名」、还没结束的展会导出成一个 .ics 文件">导出日历：要去 / 已报名</button>
+          <button class="qt" id="ex-list" title="把当前筛选出来的展会导出成一个 .ics 文件">导出日历：当前列表</button>
+          <button class="qt" id="ex-backup" title="把展会目录、你的状态和笔记、Highlight 设置导出成一个 JSON 文件">导出备份</button>
+        </span>
+      </div>
+      <div style="margin-bottom:16px">
+        <div class="fbar" id="fbar"></div>
+        <div class="active" id="active"></div>
+      </div>
+      <div id="out"><div class="empty">正在读取展会数据…</div></div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="展会详情"></aside>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* Expo Compass 本地数据层：给页面提供和 Claude 版相同的 window.claude.use('db') 接口，
+   数据读写走本机的 server.py（/api/data、/api/doc/<集合>/<id>）。页面其余代码不需要改。
+   Supports collection and single-document onSnapshot (the catalogue date and Highlight settings use the latter). */
+(() => {
+  'use strict';
+  const state = { data: null, colListeners: new Map(), docListeners: new Map() };
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const deepFreeze = o => { if (o && typeof o === 'object') { Object.values(o).forEach(deepFreeze); Object.freeze(o); } return o; };
+  const rid = () => Array.from(crypto.getRandomValues(new Uint8Array(15)), b => 'abcdefghijklmnopqrstuvwxyz0123456789'[b % 36]).join('');
+  function merge(target, patch) {
+    for (const [k, v] of Object.entries(patch)) {
+      if (v && typeof v === 'object' && !Array.isArray(v) && target[k] && typeof target[k] === 'object' && !Array.isArray(target[k])) merge(target[k], v);
+      else target[k] = clone(v);
+    }
+  }
+  function docSnap(col, id) {
+    const d = (state.data[col] || {})[id];
+    if (d === undefined) return { id, exists: false, data: () => undefined };
+    const frozen = deepFreeze(clone(d));
+    return { id, exists: true, data: () => frozen };
+  }
+  function emit(col) {
+    const docs = Object.keys(state.data[col] || {}).map(id => docSnap(col, id));
+    (state.colListeners.get(col) || []).forEach(cb => cb({ docs, size: docs.length, empty: !docs.length }));
+    state.docListeners.forEach((cbs, key) => {
+      const [c, id] = key.split('/');
+      if (c === col) cbs.forEach(cb => cb(docSnap(c, id)));
+    });
+  }
+  async function reload() {
+    const r = await fetch('/api/data', { cache: 'no-store' });
+    if (!r.ok) throw new Error('load failed');
+    state.data = (await r.json()).collections || {};
+    const cols = new Set([...state.colListeners.keys(), ...[...state.docListeners.keys()].map(k => k.split('/')[0])]);
+    cols.forEach(emit);
+  }
+  /* 多个窗口：一个窗口保存后通知其他窗口重新读取；窗口回到前台时也重读一次。
+     本窗口还有没保存完的修改时先不重读，等保存完再读，免得把刚做的修改闪回去。 */
+  const chan = 'BroadcastChannel' in window ? new BroadcastChannel('expo-compass') : null;
+  let inflight = 0, reloadWanted = false;
+  function refresh() {
+    if (!state.data) return;
+    if (inflight) { reloadWanted = true; return; }
+    reload().catch(() => { /* server gone; keep showing what we have */ });
+  }
+  if (chan) chan.onmessage = refresh;
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  async function write(method, col, id, body) {
+    inflight++;
+    try { return await send(method, col, id, body); } finally {
+      if (!--inflight && reloadWanted) { reloadWanted = false; refresh(); }
+    }
+  }
+  /* Optimistic: the page sees the change at once; if saving fails, reload the saved data and report it. */
+  async function send(method, col, id, body) {
+    const docs = state.data[col] || (state.data[col] = {});
+    if (method === 'PATCH' && !docs[id]) throw { code: 'invalid_argument', message: 'document does not exist' };
+    if (method === 'PUT') docs[id] = clone(body);
+    else if (method === 'PATCH') merge(docs[id], body);
+    else delete docs[id];
+    emit(col);
+    let r;
+    try {
+      r = await fetch(`/api/doc/${encodeURIComponent(col)}/${encodeURIComponent(id)}`, {
+        method, headers: { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body),
+      });
+    } catch (e) { r = null; }
+    if (!r || !r.ok) {
+      try { await reload(); } catch { /* server gone; keep showing what we have */ }
+      throw { code: r && r.status === 404 ? 'invalid_argument' : 'unavailable', message: r ? `HTTP ${r.status}` : '本地程序没有响应' };
+    }
+    if (chan) chan.postMessage({ col, id });
+  }
+  const docRef = (col, id) => ({
+    id,
+    get: async () => docSnap(col, id),
+    set: d => write('PUT', col, id, d),
+    update: p => write('PATCH', col, id, p),
+    delete: () => write('DELETE', col, id),
+    onSnapshot(cb) {
+      const key = `${col}/${id}`;
+      if (!state.docListeners.has(key)) state.docListeners.set(key, []);
+      state.docListeners.get(key).push(cb);
+      setTimeout(() => cb(docSnap(col, id)), 0);
+      return () => { const l = state.docListeners.get(key); const i = l.indexOf(cb); if (i >= 0) l.splice(i, 1); };
+    },
+  });
+  const db = {
+    collection: col => ({
+      onSnapshot(cb) {
+        if (!state.colListeners.has(col)) state.colListeners.set(col, []);
+        state.colListeners.get(col).push(cb);
+        setTimeout(() => emit(col), 0);
+        return () => { const l = state.colListeners.get(col); const i = l.indexOf(cb); if (i >= 0) l.splice(i, 1); };
+      },
+      doc: id => docRef(col, id || rid()),
+    }),
+    doc: path => { const [col, id] = path.split('/'); return docRef(col, id); },
+  };
+  /* 导出备份 / 日历：普通浏览器里直接下载文件。 */
+  const MIME = { json: 'application/json', ics: 'text/calendar;charset=utf-8' };
+  const downloads = {
+    async save({ filename, data }) {
+      const ext = filename.split('.').pop();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([data], { type: MIME[ext] || 'application/octet-stream' }));
+      a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+      return { status: 'saved' };
+    },
+  };
+  window.EXPO_LOCAL = true;
+  window.claude = {
+    use: async name => {
+      if (name === 'db') {
+        try { if (!state.data) await reload(); } catch { return null; }
+        return db;
+      }
+      if (name === 'downloads') return downloads;
+      return null;
+    },
+  };
+})();
+
+</script>
+<script>
+const IND={tech:'科技·AI·数据',telecom:'电信·网络',finance:'金融·金融科技',energy:'能源·气候',industry:'制造·工业',logistics:'物流·航运',health:'医疗·生命科学',food:'食品·农业',build:'建筑·地产',auto:'汽车·出行',fashion:'时尚·纺织',sport:'体育·户外',maritime:'海事·游艇',retail:'零售·电商',policy:'政策·国际组织',media:'文旅·媒体·教育'};
+const HL_DEFAULT=['tech','finance','energy'];
+let HL=new Set(HL_DEFAULT);
+const isHL=f=>(f.industries||[]).some(i=>HL.has(i));
+const COUNTRY={NL:'Netherlands',BE:'Belgium',DE:'Germany',FR:'France',GB:'United Kingdom',ES:'Spain',IT:'Italy',CH:'Switzerland',AT:'Austria',DK:'Denmark',SE:'Sweden',FI:'Finland'};
+const TYPE={trade:'贸易展',conf:'会议·峰会',expoconf:'展+会'};
+const SCALE={flagship:'Flagship',large:'Large',medium:'Medium',boutique:'Boutique'};
+const SCALE_DEF={flagship:'Flagship：行业全球级标杆，展商 1,000+ 或观众 50,000+',large:'Large：展商 300–1,000 或观众 10,000–50,000',medium:'Medium：展商 100–300 或观众 5,000–10,000',boutique:'Boutique：人数少，但讲者和参会者层级高'};
+const SCALE_DOTS={flagship:'●●●',large:'●●○',medium:'●○○',boutique:'◆'};
+const AUD={trade:'仅专业观众',mixed:'专业 + 公众'};
+const CYCLE={annual:'每年一届',biennial:'两年一届',semiannual:'每年两届'};
+const EVSTATUS={postponed:'已延期',cancelled:'已取消',rescheduled:'已改期'};
+const STATUS={interested:'感兴趣',going:'要去',registered:'已报名',attended:'已去过',skip:'不去'};
+const PRIO={high:'高',mid:'中',low:'低'};
+const RANGES=['3','6','12','all'];
+const MON_EN=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const WD=['周日','周一','周二','周三','周四','周五','周六'];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pd=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const today=(()=>{const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate())})();
+const dayDiff=(a,b)=>Math.round((b-a)/864e5);
+const ymd=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const ym=d=>iso(d).slice(0,7);
+const addMonths=(d,n)=>new Date(d.getFullYear(),d.getMonth()+n,d.getDate());
+// calendar arithmetic, not +24h: a day across the October/March clock change is 23 or 25 hours
+const addDays=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const upcoming=f=>pd(f.end)>=today;
+const going=p=>p&&(p.status==='going'||p.status==='registered');
+
+let fairs=[], plans={}, meta=null, db=null, loaded=false, fairsLoaded=false;
+const DEF={countries:[],months:[],inds:[],types:[],scales:[],job:false,verified:false,mine:false,past:false,range:'6'};
+let F=load('er.filters',DEF), view=load('er.view','list'), q='', openId=null;
+function load(k,d){
+  try{const v=localStorage.getItem(k);if(!v)return typeof d==='object'?JSON.parse(JSON.stringify(d)):d;
+    const p=JSON.parse(v);return typeof d==='object'?{...JSON.parse(JSON.stringify(d)),...p}:p}
+  catch(e){return typeof d==='object'?JSON.parse(JSON.stringify(d)):d}
+}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+/* Saved settings can point at options that no longer exist (a past month, a renamed industry).
+   Drop anything unknown so an old choice never filters the list down to nothing. */
+function sanitize(){
+  const keep=(arr,ok)=>Array.isArray(arr)?arr.filter(v=>ok.includes(v)):[];
+  F.countries=keep(F.countries,Object.keys(COUNTRY));
+  F.inds=keep(F.inds,Object.keys(IND));
+  F.types=keep(F.types,Object.keys(TYPE));
+  F.scales=keep(F.scales,Object.keys(SCALE));
+  if(fairsLoaded)F.months=keep(F.months,monthList());
+  if(!RANGES.includes(String(F.range)))F.range='6';
+  ['job','verified','mine','past'].forEach(k=>F[k]=!!F[k]);
+  store('er.filters',F);
+}
+function sanitizeHL(list){return new Set((Array.isArray(list)?list:HL_DEFAULT).filter(k=>k in IND))}
+
+function toast(t){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2600)}
+
+function dateLabel(f){
+  const s=pd(f.start),e=pd(f.end);
+  const md=d=>`${d.getMonth()+1}月${d.getDate()}日`;
+  const range=f.start===f.end?md(s):(s.getMonth()===e.getMonth()?`${md(s)}–${e.getDate()}日`:`${md(s)} – ${md(e)}`);
+  return `${s.getFullYear()} 年 ${range}（${WD[s.getDay()]}起，${dayDiff(s,e)+1} 天）`;
+}
+function badge(f){
+  const s=pd(f.start),e=pd(f.end),past=e<today;
+  const d=f.start===f.end?`${s.getDate()}`:`${s.getDate()}–${e.getDate()}`;
+  const m=s.getMonth()===e.getMonth()?MON_EN[s.getMonth()]:`${MON_EN[s.getMonth()]}/${MON_EN[e.getMonth()]}`;
+  return `<div class="badge${past?' past':''}"><div class="m">${m}</div><div class="d">${d}</div></div>`;
+}
+function togo(f){
+  const s=pd(f.start),e=pd(f.end);
+  if(e<today)return '已结束';
+  if(s<=today)return '进行中';
+  return `还有 ${dayDiff(today,s)} 天`;
+}
+function monthsOf(f){const out=[];for(let d=new Date(pd(f.start).getFullYear(),pd(f.start).getMonth(),1);d<=pd(f.end);d=new Date(d.getFullYear(),d.getMonth()+1,1))out.push(ym(d));return out}
+function inRange(f,r){if(r==='all')return true;return pd(f.start)<=addMonths(today,Number(r))}
+// months offered in the filter: every month that has a fair the other basic rules can show
+function monthList(){
+  const set=new Set();fairs.forEach(f=>{if((F.past||upcoming(f))&&inRange(f,F.range))monthsOf(f).forEach(m=>set.add(m))});
+  return [...set].sort();
+}
+const upcomingDeadlines=f=>(f.deadlines||[]).filter(x=>pd(x.date)>=today).sort((a,b)=>a.date.localeCompare(b.date));
+
+function match(f,X=F){
+  const p=plans[f.id];
+  if(!X.past&&!upcoming(f))return false;
+  if(!inRange(f,X.range))return false;
+  if(X.countries.length&&!X.countries.includes(f.country))return false;
+  if(X.months.length&&!monthsOf(f).some(m=>X.months.includes(m)))return false;
+  if(X.inds.length&&!(f.industries||[]).some(i=>X.inds.includes(i)))return false;
+  if(X.types.length&&!X.types.includes(f.type))return false;
+  if(X.scales.length&&!X.scales.includes(f.scale))return false;
+  if(X.job&&!isHL(f))return false;
+  if(X.verified&&f.verify!=='official')return false;
+  if(X.mine&&!(p&&p.status&&p.status!=='skip'))return false;
+  if(q){const hay=[f.name,f.city,f.venue,COUNTRY[f.country],f.series,f.highlight,(f.companies||[]).join(' '),(f.industries||[]).map(i=>IND[i]).join(' ')].join(' ').toLowerCase();if(!hay.includes(q))return false}
+  return true;
+}
+
+const QUICK=[['job','Only highlight'],['verified','只看已核实'],['mine','只看我标过的'],['past','显示已结束']];
+let openDD=null;
+function groups(){
+  const mo={};monthList().forEach(m=>{const [y,mm]=m.split('-');mo[m]=`${y} 年 ${+mm} 月`});
+  return [['countries','国家',COUNTRY],['months','月份',mo],['inds','行业',IND],['types','类型',TYPE],['scales','规模',SCALE]];
+}
+// how many fairs this option would show, given every other active filter
+function optCount(k,v){const X={...F,[k]:[v]};return fairs.filter(f=>match(f,X)).length}
+
+function renderFilters(){
+  const G=groups();
+  const dd=G.map(([k,title,opts])=>{
+    const n=F[k].length, open=openDD===k;
+    const entries=Object.entries(opts);
+    const panel=open?`<div class="ddpanel" role="menu">${entries.length?entries.map(([v,l])=>{
+        const on=F[k].includes(v), c=optCount(k,v);
+        return `<button class="opt" role="menuitemcheckbox" data-k="${k}" data-v="${esc(v)}" aria-checked="${on}" ${k==='scales'?`title="${esc(SCALE_DEF[v])}"`:''} ${!on&&!c?'disabled':''}><span class="box"></span><span class="lbl">${esc(l)}</span><span class="cnt">${c}</span></button>`}).join(''):'<div class="hint">当前时间范围内没有可选的月份</div>'}</div>`:'';
+    return `<div class="dd"><button class="ddbtn${n?' on':''}" data-dd="${k}" aria-expanded="${open}">${title}${n?`<span class="n">${n}</span>`:''}<span class="car">▾</span></button>${panel}</div>`;
+  }).join('');
+  const hlOpen=openDD==='hl';
+  const hlPanel=hlOpen?`<div class="ddpanel" role="menu"><div class="hint">勾选的行业会在列表里高亮</div>${Object.entries(IND).map(([k,l])=>
+      `<button class="opt hl" role="menuitemcheckbox" data-hl="${k}" aria-checked="${HL.has(k)}"><span class="box"></span><span class="lbl">${esc(l)}</span></button>`).join('')}</div>`:'';
+  const hlBtn=`<div class="dd"><button class="ddbtn" data-dd="hl" aria-expanded="${hlOpen}">Highlight<span class="n" style="background:var(--teal)">${HL.size}</span><span class="car">▾</span></button>${hlPanel}</div>`;
+  const quick=QUICK.map(([k,l])=>`<button class="qt" data-q="${k}" aria-pressed="${!!F[k]}">${l}</button>`).join('');
+  $('#fbar').innerHTML=dd+hlBtn+'<span class="sep"></span>'+quick;
+  const p=document.querySelector('.ddpanel');
+  if(p&&p.getBoundingClientRect().right>window.innerWidth-8)p.classList.add('right');
+
+  const pills=[];
+  G.forEach(([k,title,opts])=>F[k].forEach(v=>pills.push(`<span class="pill"><small>${title}</small>${esc(opts[v]||v)}<button data-rm="${k}" data-v="${esc(v)}" aria-label="去掉 ${esc(opts[v]||v)}">×</button></span>`)));
+  QUICK.forEach(([k,l])=>{if(F[k]&&k!=='past')pills.push(`<span class="pill">${l}<button data-rm="${k}" aria-label="去掉 ${l}">×</button></span>`)});
+  $('#active').innerHTML=pills.length?pills.join('')+'<button class="clear" id="clear">清空筛选</button>':'';
+  document.querySelectorAll('#range [data-r]').forEach(b=>b.setAttribute('aria-pressed',String(F.range)===b.dataset.r));
+}
+$('#fbar').addEventListener('click',e=>{
+  const b=e.target.closest('[data-dd]');
+  if(b){openDD=openDD===b.dataset.dd?null:b.dataset.dd;renderFilters();return}
+  const o=e.target.closest('.opt[data-k]');
+  if(o){const k=o.dataset.k,v=o.dataset.v;F[k]=F[k].includes(v)?F[k].filter(x=>x!==v):[...F[k],v];changed();return}
+  const h=e.target.closest('.opt[data-hl]');
+  if(h){const next=new Set(HL);next.has(h.dataset.hl)?next.delete(h.dataset.hl):next.add(h.dataset.hl);HL=next;renderFilters();renderMain();saveHL();return}
+  const t=e.target.closest('[data-q]');
+  if(t){F[t.dataset.q]=!F[t.dataset.q];changed()}
+});
+$('#active').addEventListener('click',e=>{
+  const r=e.target.closest('[data-rm]');
+  if(r){const k=r.dataset.rm;Array.isArray(F[k])?F[k]=F[k].filter(x=>x!==r.dataset.v):F[k]=false;changed();return}
+  if(e.target.id==='clear'){F={...JSON.parse(JSON.stringify(DEF)),range:F.range};changed()}
+});
+$('#range').addEventListener('click',e=>{const b=e.target.closest('[data-r]');if(b){F.range=b.dataset.r;changed()}});
+document.addEventListener('click',e=>{if(openDD&&!e.target.closest('.dd')){openDD=null;renderFilters()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openDD){openDD=null;renderFilters()}});
+let hlQueue=Promise.resolve();
+function saveHL(){
+  if(!db){toast('没有连上数据库，改动没有保存。');return}
+  const body={highlight:Object.keys(IND).filter(k=>HL.has(k)),schemaVersion:1,updatedAt:new Date().toISOString()};
+  hlQueue=hlQueue.then(()=>db.doc('settings/prefs').set(body)).catch(()=>toast('Highlight 设置保存失败，请稍后再试。'));
+}
+function changed(){sanitize();renderFilters();renderMain()}
+
+$('#q').addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();renderMain()});
+$('#v-list').onclick=()=>{view='list';store('er.view',view);renderMain()};
+$('#v-tl').onclick=()=>{view='timeline';store('er.view',view);renderMain()};
+
+function renderHeader(){
+  const cc=new Set(fairs.map(f=>f.country));
+  $('#cov').textContent=`${cc.size||12} 国`;
+  $('#upd').textContent=meta&&meta.updatedAt?`目录更新于 ${meta.updatedAt}`:'目录更新日期未知';
+  const up=fairs.filter(upcoming);
+  const g=fairs.filter(f=>upcoming(f)&&going(plans[f.id])).length;
+  $('#stats').innerHTML=`
+    <div class="stat"><b>${up.length}</b><small>场即将举办</small></div>
+    <div class="stat"><b>${fairs.filter(f=>f.verify==='official').length}/${fairs.length}</b><small>官网已核实</small></div>
+    <div class="stat"><b>${g}</b><small>要去 / 已报名</small></div>`;
+}
+
+function scaleTag(f){
+  const est=f.scaleBasis==='reputation';
+  const tip=(SCALE_DEF[f.scale]||'')+(est?'。这一场官网没给数字，档位是按行业地位估计的':'');
+  return `<span class="scale${est?' est':''}" title="${esc(tip)}" style="cursor:help"><i>${SCALE_DOTS[f.scale]||''}</i> ${esc(SCALE[f.scale]||'')}</span>`;
+}
+function fairCard(f){
+  const p=plans[f.id]||{};
+  const inds=(f.industries||[]).map(i=>`<span class="tag${HL.has(i)?' job':''}">${esc(IND[i]||i)}</span>`).join('');
+  const st=p.status?`<span class="mine${going(p)?' strong':''}">${STATUS[p.status]}</span>`:'';
+  const ev=EVSTATUS[f.eventStatus]?`<span class="warnpill">${EVSTATUS[f.eventStatus]}</span>`:'';
+  const dl=upcomingDeadlines(f).filter(x=>dayDiff(today,pd(x.date))<=30).map(x=>`<span class="dlpill" title="${esc(x.label)}">${+x.date.slice(5,7)}/${+x.date.slice(8)} 截止</span>`).join('');
+  return `<button class="fair${p.status==='skip'?' dim':''}${f.eventStatus==='cancelled'?' cancel':''}" data-id="${esc(f.id)}">
+    ${badge(f)}
+    <div style="min-width:0">
+      <div class="name">${esc(f.name)}</div>
+      <div class="where"><span class="cc">${esc(f.country)}</span>${esc(f.city)} · ${esc(f.venue)}</div>
+      <div class="tags">${inds}<span class="tag">${esc(TYPE[f.type]||'')}</span></div>
+    </div>
+    <div class="side">
+      ${scaleTag(f)}
+      ${ev}
+      ${f.verify!=='official'?'<span class="warnpill">仅见于聚合站</span>':''}
+      ${dl}
+      ${st}
+      <span class="togo">${togo(f)}</span>
+    </div>
+  </button>`;
+}
+
+// a fair that runs across two months is listed under both (only the selected ones, if any)
+function renderList(list){
+  const groups={};
+  list.forEach(f=>monthsOf(f).forEach(k=>{if(F.months.length&&!F.months.includes(k))return;(groups[k]=groups[k]||[]).push(f)}));
+  return Object.keys(groups).sort().map(k=>{const [y,m]=k.split('-');
+    return `<div class="month"><h2>${y} 年 ${+m} 月</h2><span>${groups[k].length} 场</span></div>`+groups[k].map(fairCard).join('')}).join('');
+}
+
+function renderTimeline(list){
+  const first=list.reduce((m,f)=>pd(f.start)<m?pd(f.start):m,today);
+  const last=list.reduce((m,f)=>pd(f.end)>m?pd(f.end):m,today);
+  const a=new Date(first.getFullYear(),first.getMonth(),1), b=new Date(last.getFullYear(),last.getMonth()+1,1), span=b-a;
+  const X=d=>Math.max(0,Math.min(100,(d-a)/span*100));
+  const months=[];for(let d=new Date(a);d<b;d=new Date(d.getFullYear(),d.getMonth()+1,1))months.push(new Date(d));
+  const head=months.map((d,i)=>`<span style="left:${X(d)}%">${i===0||d.getMonth()===0?d.getFullYear()+' · ':''}${d.getMonth()+1}月</span>`).join('');
+  const grid=months.map(d=>`<div class="tl-grid" style="left:${X(d)}%"></div>`).join('');
+  const t=today>=a&&today<b?`<div class="tl-today" style="left:${X(today)}%" title="今天"></div>`:'';
+  const rows=list.map(f=>{const go=going(plans[f.id]);
+    const l=X(pd(f.start)),w=Math.max(.5,X(addDays(pd(f.end),1))-l);
+    return `<div class="tl-row" data-id="${esc(f.id)}" title="${esc(f.name)} · ${esc(dateLabel(f))}"><div class="tl-label"><span class="cc">${esc(f.country)}</span>${esc(f.name)}</div><div class="tl-track">${grid}${t}<div class="tl-bar${go?' go':isHL(f)?' job':''}" style="left:${l}%;width:${w}%"></div></div></div>`}).join('');
+  const minw=Math.max(820,210+months.length*90);
+  return `<div class="tl"><div class="tl-in" style="min-width:${minw}px"><div class="tl-head"><div></div><div class="tl-months">${head}</div></div>${rows}</div></div>
+    <div class="legend"><span><i style="background:var(--dot)"></i>要去 / 已报名</span><span><i style="background:var(--teal)"></i>Highlight 行业</span><span><i style="background:var(--muted)"></i>其它</span><span><i style="border-left:2px dashed var(--warn);width:0;height:12px"></i>今天</span></div>`;
+}
+
+function renderMain(){
+  $('#v-list').setAttribute('aria-pressed',view==='list');$('#v-tl').setAttribute('aria-pressed',view==='timeline');
+  if(!db){$('#out').innerHTML=`<div class="empty">${loaded?'连不上本地程序。请关掉这个窗口，重新双击「启动 Expo Compass.bat」。':'正在读取展会数据…'}</div>`;return}
+  if(!fairs.length){$('#out').innerHTML=`<div class="empty">${loaded&&fairsLoaded?'展会目录还是空的。Claude 核实完一批展会后，会把它们写进来。':'正在读取展会数据…'}</div>`;$('#rcount').textContent='';return}
+  const list=fairs.filter(f=>match(f)).sort((x,y)=>x.start.localeCompare(y.start)||x.name.localeCompare(y.name));
+  $('#rcount').textContent=`显示 ${list.length} / ${fairs.length} 场`;
+  if(!list.length){$('#out').innerHTML='<div class="empty">没有符合条件的展会。试试放宽筛选、换成更长的时间范围，或点「清空筛选」。</div>';return}
+  $('#out').innerHTML=view==='list'?renderList(list):renderTimeline(list);
+}
+$('#out').addEventListener('click',e=>{const el=e.target.closest('[data-id]');if(el)openDetail(el.dataset.id)});
+
+/* ---------- detail ---------- */
+function calLinks(f){
+  const s=pd(f.start),e=addDays(pd(f.end),1);
+  const loc=`${f.venue}, ${f.city}`, det=`官网：${f.url}`;
+  const g=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(f.name)}&dates=${ymd(s)}/${ymd(e)}&location=${encodeURIComponent(loc)}&details=${encodeURIComponent(det)}`;
+  return `<a class="btnlink" href="${g}" target="_blank" rel="noopener">加到 Google 日历 ↗</a>`;
+}
+// notes written for other editions of the same fair (e.g. last year's MEDICA)
+function otherEditions(f){
+  return fairs.filter(x=>x.series===f.series&&x.id!==f.id).sort((a,b)=>a.start.localeCompare(b.start));
+}
+function openDetail(id){
+  const f=fairs.find(x=>x.id===id);if(!f)return;openId=id;
+  const p=plans[id]||{};
+  const fact=(k,v)=>v?`<dt>${k}</dt><dd>${esc(v)}</dd>`:'';
+  const dls=upcomingDeadlines(f).map(x=>`${x.label}：${x.date}`).join('；');
+  const others=otherEditions(f);
+  const prevNotes=others.filter(x=>(plans[x.id]||{}).notes).map(x=>`<div class="prev"><b>${esc(x.name)}（${x.start.slice(0,4)}）的笔记</b>\n${esc(plans[x.id].notes)}</div>`).join('');
+  const nextHint=!upcoming(f)&&!others.some(x=>x.start>f.start)?`<div class="hl">这一届已经结束，目录里还没有下一届（${CYCLE[f.cycle]||''}）。每月刷新时会去官网查下一届的日期。</div>`:'';
+  $('#drawer').innerHTML=`
+    <button class="x" id="x" aria-label="关闭">关闭</button>
+    <div class="where" style="color:var(--muted);font-size:12.5px"><span class="cc">${esc(f.country)}</span>${esc(COUNTRY[f.country])} · ${esc(f.city)}</div>
+    <h2>${esc(f.name)}</h2>
+    <div class="when">${esc(dateLabel(f))} · ${togo(f)}${EVSTATUS[f.eventStatus]?` · <b style="color:var(--warn)">${EVSTATUS[f.eventStatus]}</b>`:''}</div>
+    <div class="when" style="color:var(--muted);margin-top:2px">${esc(f.venue)}</div>
+    ${nextHint}
+    ${f.highlight?`<div class="hl">${esc(f.highlight)}</div>`:''}
+    <div class="links"><a class="btnlink primary" href="${esc(f.url)}" target="_blank" rel="noopener">官网 ↗</a>${calLinks(f)}</div>
+    <dl class="facts">
+      ${fact('行业',(f.industries||[]).map(i=>IND[i]).join('、'))}
+      ${fact('类型',TYPE[f.type])}${fact('规模',(SCALE_DEF[f.scale]||'')+(f.scaleBasis==='reputation'?'（官网没给数字，按行业地位估计）':''))}${fact('观众',AUD[f.audience])}
+      ${fact('举办周期',CYCLE[f.cycle])}
+      ${fact('展商',f.exhibitors)}${fact('参会人数',f.visitors)}${fact('门票',f.ticket)}
+      ${fact('截止日期',dls)}
+      ${f.freePass===true?fact('免费入场','有'):''}${fact('语言',f.language)}
+      ${fact('代表公司',(f.companies||[]).join('、'))}
+    </dl>
+    <div class="verify">${f.verify==='official'?'<b>✓ 已在官网核实</b>':'<b class="w">⚠ 仅见于聚合站，出发前再去官网确认</b>'} · ${esc(f.verifiedAt)} · <a href="${esc(f.sourceUrl)}" target="_blank" rel="noopener">来源 ↗</a></div>
+    <div class="sec"><h3>我的状态</h3><div class="stbtns" id="st">${Object.entries(STATUS).map(([k,l])=>`<button data-st="${k}" aria-pressed="${p.status===k}">${l}</button>`).join('')}</div></div>
+    <div class="sec"><h3>优先级</h3><div class="stbtns" id="pr">${Object.entries(PRIO).map(([k,l])=>`<button data-pr="${k}" aria-pressed="${p.priority===k}">${l}</button>`).join('')}</div></div>
+    <div class="sec"><h3>Networking 笔记</h3><textarea id="notes" placeholder="想见哪些公司或人、想问什么、会后跟进…">${esc(p.notes||'')}</textarea><div class="saved" id="saved"></div>${prevNotes}</div>`;
+  $('#drawer').hidden=false;$('#scrim').hidden=false;$('#x').focus();
+}
+function closeDetail(){flushNotes();openId=null;$('#drawer').hidden=true;$('#scrim').hidden=true}
+$('#scrim').onclick=closeDetail;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openId)closeDetail()});
+$('#drawer').addEventListener('click',e=>{
+  if(e.target.id==='x')return closeDetail();
+  const s=e.target.closest('[data-st]'),r=e.target.closest('[data-pr]');
+  if(s){const cur=(plans[openId]||{}).status;savePlan(openId,{status:cur===s.dataset.st?null:s.dataset.st});refreshButtons()}
+  if(r){const cur=(plans[openId]||{}).priority;savePlan(openId,{priority:cur===r.dataset.pr?null:r.dataset.pr});refreshButtons()}
+});
+let notesTimer=null;
+$('#drawer').addEventListener('input',e=>{if(e.target.id==='notes'){$('#saved').textContent='正在输入…';clearTimeout(notesTimer);notesTimer=setTimeout(flushNotes,900)}});
+$('#drawer').addEventListener('focusout',e=>{if(e.target.id==='notes')flushNotes()});
+function flushNotes(){clearTimeout(notesTimer);const t=$('#notes');if(!t||!openId)return;if(t.value!==((plans[openId]||{}).notes||''))savePlan(openId,{notes:t.value},true)}
+function refreshButtons(){
+  if(!openId)return;const p=plans[openId]||{};
+  document.querySelectorAll('#st [data-st]').forEach(b=>b.setAttribute('aria-pressed',p.status===b.dataset.st));
+  document.querySelectorAll('#pr [data-pr]').forEach(b=>b.setAttribute('aria-pressed',p.priority===b.dataset.pr));
+}
+
+/* ---------- writes: one at a time per document ---------- */
+const queue={};
+function savePlan(id,patch,isNotes){
+  if(!db){toast('没有连上数据库，改动没有保存。');return}
+  const f=fairs.find(x=>x.id===id)||{};
+  const next={...(plans[id]||{}),...patch,fairId:id,series:f.series||null,schemaVersion:2,updatedAt:new Date().toISOString()};
+  Object.keys(next).forEach(k=>{if(next[k]===null)delete next[k]});
+  plans[id]=next;renderHeader();renderMain();
+  queue[id]=(queue[id]||Promise.resolve()).then(()=>db.collection('plans').doc(id).set(next)).then(()=>{
+    if(isNotes&&openId===id&&$('#saved'))$('#saved').textContent='已保存';
+  }).catch(e=>{toast(e&&e.code==='invalid_argument'?'你在这个页面上只有查看权限，改动没有保存。':'保存失败，请稍后再试。')});
+}
+
+/* ---------- exports (only where the viewer can save files: the local version) ---------- */
+let downloads=null;
+const icsText=s=>String(s||'').replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/[,;]/g,m=>'\\'+m);
+// RFC 5545: lines longer than 75 octets are folded; count UTF-8 bytes so Chinese text is cut correctly
+function icsFold(line){
+  const enc=new TextEncoder();if(enc.encode(line).length<=75)return line;
+  const out=[];let cur='',n=0;
+  for(const ch of line){const b=enc.encode(ch).length;if(n+b>(out.length?74:75)){out.push(cur);cur='';n=0}cur+=ch;n+=b}
+  out.push(cur);return out.join('\r\n ');
+}
+function buildIcs(list){
+  const stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Europe Expo Compass//ZH','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+  list.forEach(f=>{L.push('BEGIN:VEVENT',`UID:${f.id}@expo-compass`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${ymd(pd(f.start))}`,`DTEND;VALUE=DATE:${ymd(addDays(pd(f.end),1))}`,
+    `SUMMARY:${icsText(f.name)}`,`LOCATION:${icsText(f.venue+', '+f.city+', '+COUNTRY[f.country])}`,`DESCRIPTION:${icsText([f.highlight,'官网：'+f.url].filter(Boolean).join('\n'))}`,`URL:${f.url}`,'TRANSP:TRANSPARENT','END:VEVENT')});
+  L.push('END:VCALENDAR');return L.map(icsFold).join('\r\n')+'\r\n';
+}
+async function saveFile(filename,data,what){
+  if(!downloads)return;
+  try{await downloads.save({filename,data});toast(`已导出${what}`)}catch(e){if(!e||e.code!=='declined')toast('导出失败，请再试一次。')}
+}
+$('#ex-go').onclick=()=>{
+  const list=fairs.filter(f=>upcoming(f)&&going(plans[f.id])).sort((a,b)=>a.start.localeCompare(b.start));
+  if(!list.length)return toast('还没有标「要去」或「已报名」的展会。');
+  saveFile(`expo-compass-going-${iso(today)}.ics`,buildIcs(list),`日历（${list.length} 场）`);
+};
+$('#ex-list').onclick=()=>{
+  const list=fairs.filter(f=>match(f)).sort((a,b)=>a.start.localeCompare(b.start));
+  if(!list.length)return toast('当前列表是空的。');
+  saveFile(`expo-compass-list-${iso(today)}.ics`,buildIcs(list),`日历（${list.length} 场）`);
+};
+$('#ex-backup').onclick=()=>{
+  const backup={format:'expo-compass-backup',schemaVersion:2,exportedAt:new Date().toISOString(),collections:{
+    fairs:Object.fromEntries(fairs.map(({id,...d})=>[id,d])),plans,
+    settings:{prefs:{highlight:Object.keys(IND).filter(k=>HL.has(k)),schemaVersion:1}},meta:meta?{catalog:meta}:{}}};
+  saveFile(`expo-compass-backup-${iso(today)}.json`,JSON.stringify(backup,null,1),'备份');
+};
+
+/* ---------- boot ---------- */
+sanitize();renderFilters();renderMain();
+(async()=>{
+  try{db=await window.claude?.use?.('db')}catch(e){db=null}
+  try{downloads=await window.claude?.use?.('downloads')}catch(e){downloads=null}
+  $('#exports').hidden=!downloads;
+  loaded=true;
+  if(!db){renderMain();return}
+  db.collection('fairs').onSnapshot(s=>{
+    fairs=s.docs.map(d=>({id:d.id,...d.data()}));fairsLoaded=true;
+    sanitize();renderHeader();renderFilters();renderMain();
+    if(openId&&!fairs.find(f=>f.id===openId))closeDetail();
+  },()=>{toast('读取展会数据失败。')});
+  db.doc('meta/catalog').onSnapshot(s=>{meta=s.exists?s.data():null;renderHeader()},()=>{});
+  db.doc('settings/prefs').onSnapshot(s=>{
+    HL=sanitizeHL(s.exists?s.data().highlight:null);
+    renderFilters();renderMain();
+  },()=>{});
+  db.collection('plans').onSnapshot(s=>{
+    const n={};s.docs.forEach(d=>n[d.id]=d.data());
+    const t=$('#notes');const typing=t&&document.activeElement===t;
+    plans=n;renderHeader();renderMain();
+    if(openId){refreshButtons();if(!typing&&t)t.value=(plans[openId]||{}).notes||''}
+  },()=>{});
+})();
+</script>
+
+</body></html>

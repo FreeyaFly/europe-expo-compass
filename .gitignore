@@ -1,0 +1,10 @@
+# your own data: status, notes, Highlight settings, daily backups
+data/
+# generated: test build, test results, check reports
+app/test.html
+tests/result.txt
+reports/
+# Python
+__pycache__/
+*.pyc
+*.tmp
