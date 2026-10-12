@@ -60,9 +60,13 @@
     document.querySelector('#x').click();
     ok(await until(async () => (((await saved()).plans || {})['ade-2026'] || {}).status === 'interested'), 'last click wins');
 
+    // ---- the two UI string tables have exactly the same entries ----
+    const tkeys = o => Object.entries(o).flatMap(([k, v]) => v && typeof v === 'object' && !Array.isArray(v) ? Object.keys(v).map(x => k + '.' + x) : [k]).sort().join();
+    ok(tkeys(T.zh) === tkeys(T.en), 'zh and en UI tables have the same entries');
+
     // ---- English UI: no Chinese character may be left anywhere on screen (user notes excepted) ----
-    const CJK = /[　-鿿＀-￯]/;
-    const cjkIn = el => (el.innerText.match(/[^\n]*[　-鿿＀-￯][^\n]*/g) || []).slice(0, 3).join(' | ');
+    const CJK = /[\u3000-\u9fff\uff00-\uffef]/;
+    const cjkIn = el => (el.innerText.match(/[^\n]*[\u3000-\u9fff\uff00-\uffef][^\n]*/g) || []).slice(0, 3).join(' | ');
     document.querySelector('[data-r="all"]').click();
     document.querySelector('[data-q="past"]').click();
     document.querySelector('#lang').click();

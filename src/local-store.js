@@ -1,6 +1,6 @@
-/* Expo Compass 本地数据层：给页面提供和 Claude 版相同的 window.claude.use('db') 接口，
-   数据读写走本机的 server.py（/api/data、/api/doc/<集合>/<id>）。页面其余代码不需要改。
-   Supports collection and single-document onSnapshot (the catalogue date and Highlight settings use the latter). */
+/* Expo Compass local data layer: gives the page a window.claude.use('db') interface, backed by the local
+   server.py (/api/data, /api/doc/<collection>/<id>), so the page code needs no changes for the local version.
+   Supports collection and single-document onSnapshot (the catalogue date and the settings use the latter). */
 (() => {
   'use strict';
   const state = { data: null, colListeners: new Map(), docListeners: new Map() };
@@ -34,8 +34,8 @@
     const cols = new Set([...state.colListeners.keys(), ...[...state.docListeners.keys()].map(k => k.split('/')[0])]);
     cols.forEach(emit);
   }
-  /* 多个窗口：一个窗口保存后通知其他窗口重新读取；窗口回到前台时也重读一次。
-     本窗口还有没保存完的修改时先不重读，等保存完再读，免得把刚做的修改闪回去。 */
+  /* Several windows: after one saves, the others reload; a window also reloads when it comes back to the front.
+     While this window still has a save in flight it waits, so a fresh change does not flash back to the old value. */
   const chan = 'BroadcastChannel' in window ? new BroadcastChannel('expo-compass') : null;
   let inflight = 0, reloadWanted = false;
   function refresh() {
@@ -67,7 +67,7 @@
     } catch (e) { r = null; }
     if (!r || !r.ok) {
       try { await reload(); } catch { /* server gone; keep showing what we have */ }
-      throw { code: r && r.status === 404 ? 'invalid_argument' : 'unavailable', message: r ? `HTTP ${r.status}` : '本地程序没有响应' };
+      throw { code: r && r.status === 404 ? 'invalid_argument' : 'unavailable', message: r ? `HTTP ${r.status}` : 'the local program did not respond' };
     }
     if (chan) chan.postMessage({ col, id });
   }
@@ -97,7 +97,7 @@
     }),
     doc: path => { const [col, id] = path.split('/'); return docRef(col, id); },
   };
-  /* 导出备份 / 日历：普通浏览器里直接下载文件。 */
+  /* Backup and calendar export: a plain browser download. */
   const MIME = { json: 'application/json', ics: 'text/calendar;charset=utf-8' };
   const downloads = {
     async save({ filename, data }) {

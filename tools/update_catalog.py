@@ -2,6 +2,7 @@
 
     python tools/update_catalog.py            -> check the catalogue and show what would change
     python tools/update_catalog.py --apply    -> apply it
+    --lang zh|en                              -> message language (default: the app's language, then the system's)
 
 Only the `fairs` collection and `meta/catalog` are touched. Your own data (`plans`: status, priority,
 notes; `settings`: Highlight) is never changed.
@@ -23,6 +24,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+import cli_lang
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / 'catalog' / 'fairs.json'
 DATA = ROOT / 'data' / 'expo.json'
@@ -32,7 +35,7 @@ INDUSTRIES = {'tech', 'telecom', 'finance', 'energy', 'industry', 'logistics', '
               'fashion', 'sport', 'maritime', 'retail', 'policy', 'media'}
 COUNTRIES = {'NL', 'BE', 'DE', 'FR', 'GB', 'ES', 'IT', 'CH', 'AT', 'DK', 'SE', 'FI', 'NO', 'IS', 'IE', 'PT', 'PL', 'CZ',
              'LU', 'HU', 'GR', 'RO', 'BG', 'HR', 'SI', 'SK', 'EE', 'LV', 'LT', 'CY', 'MT'}
-CJK = re.compile(r'[　-鿿＀-￯]')
+CJK = re.compile('[\u3000-\u9fff\uff00-\uffef]')
 TEXT_FIELDS = ['name', 'highlight', 'ticket', 'venue', 'exhibitors', 'visitors', 'language']
 REQUIRED = ['id', 'name', 'start', 'end', 'city', 'country', 'venue', 'url', 'industries', 'type', 'scale', 'audience',
             'verify', 'verifiedAt', 'sourceUrl', 'series', 'cycle', 'eventStatus', 'scaleBasis', 'schemaVersion']
@@ -108,12 +111,38 @@ def send(method, col, doc_id, body=None):
         r.read()
 
 
+STOP_CMD = 'Get-NetTCPConnection -LocalPort {port} -State Listen | ForEach-Object {{ Stop-Process -Id $_.OwningProcess }}'
+MSG = {
+    'zh': {
+        'invalid': '目录有问题，没有做任何修改：',
+        'catalog': '目录：{n} 场（{date}）',
+        'added': '新增 {n}', 'changed': '修改 {n}', 'removed': '删除 {n}', 'colon': '：',
+        'kept': '目录里已经没有、但你写过状态或笔记，所以保留 {n}：',
+        'preview': '\n这只是预览。确认无误后加 --apply 执行。',
+        'other': '\n端口 {port} 上运行的是另一份 Expo Compass（不是这个文件夹的），或者是旧版本的本地程序。\n'
+                 '为了不写错地方，这次没有做任何修改。请先在 PowerShell 里运行下面这条命令，关掉占用这个端口的本地程序，再重新运行：\n  ',
+        'via_server': '已通过正在运行的本地程序更新。', 'backup': '已备份：{p}', 'written': '已写入 {p}',
+    },
+    'en': {
+        'invalid': 'The catalogue has problems; nothing was changed:',
+        'catalog': 'Catalogue: {n} fairs ({date})',
+        'added': 'Added {n}', 'changed': 'Changed {n}', 'removed': 'Removed {n}', 'colon': ': ',
+        'kept': 'No longer in the catalogue but kept, because you wrote a status or note for them ({n}): ',
+        'preview': '\nThis is only a preview. Add --apply to make the change.',
+        'other': '\nAnother copy of Expo Compass (not this folder), or an older version of the local program, is running on port {port}.\n'
+                 'To avoid writing to the wrong place, nothing was changed. Run this command in PowerShell to stop the program on that port, then try again:\n  ',
+        'via_server': 'Updated through the running local program.', 'backup': 'Backup: {p}', 'written': 'Written to {p}',
+    },
+}
+
+
 def main():
     apply = '--apply' in sys.argv
+    m = MSG[cli_lang.pick(data_file=DATA)]
     catalog = json.loads(CATALOG.read_text(encoding='utf-8'))
     errors = check(catalog)
     if errors:
-        print('目录有问题，没有做任何修改：')
+        print(m['invalid'])
         print('\n'.join('  ' + e for e in errors))
         sys.exit(1)
     data = json.loads(DATA.read_text(encoding='utf-8')) if DATA.exists() else {'format': 1, 'collections': {}}
@@ -130,21 +159,19 @@ def main():
         diff = sorted(k for k in set(new[i]) | set(old[i]) if new[i].get(k) != old[i].get(k))
         if diff:
             changed[i] = diff
-    print(f'目录：{len(new)} 场（{catalog.get("meta", {}).get("updatedAt", "?")}）')
-    print(f'新增 {len(added)}：' + ', '.join(added) if added else '新增 0')
-    print(f'修改 {len(changed)}：' + '; '.join(f'{i}（{", ".join(d)}）' for i, d in changed.items()) if changed else '修改 0')
-    print(f'删除 {len(removed)}：' + ', '.join(removed) if removed else '删除 0')
+    print(m['catalog'].format(n=len(new), date=catalog.get('meta', {}).get('updatedAt', '?')))
+    print(m['added'].format(n=len(added)) + (m['colon'] + ', '.join(added) if added else ''))
+    print(m['changed'].format(n=len(changed)) + (m['colon'] + '; '.join(f'{i} ({", ".join(d)})' for i, d in changed.items()) if changed else ''))
+    print(m['removed'].format(n=len(removed)) + (m['colon'] + ', '.join(removed) if removed else ''))
     if kept:
-        print(f'目录里已经没有、但你写过状态或笔记，所以保留 {len(kept)}：' + ', '.join(kept))
+        print(m['kept'].format(n=len(kept)) + ', '.join(kept))
     if not apply:
-        print('\n这只是预览。确认无误后加 --apply 执行。')
+        print(m['preview'])
         return
     meta = catalog.get('meta', {})
     state = server_state()
     if state == 'other':
-        print(f'\n端口 {PORT} 上运行的是另一份 Expo Compass（不是这个文件夹的），或者是旧版本的本地程序。\n'
-              '为了不写错地方，这次没有做任何修改。请先在 PowerShell 里运行下面这条命令，关掉占用这个端口的本地程序，再重新运行：\n'
-              f'  Get-NetTCPConnection -LocalPort {PORT} -State Listen | ForEach-Object {{ Stop-Process -Id $_.OwningProcess }}')
+        print(m['other'].format(port=PORT) + STOP_CMD.format(port=PORT))
         sys.exit(1)
     if state == 'ours':
         for i in added + list(changed):
@@ -153,13 +180,13 @@ def main():
             send('DELETE', 'fairs', i)
         if meta:
             send('PUT', 'meta', 'catalog', meta)
-        print('已通过正在运行的本地程序更新。')
+        print(m['via_server'])
     else:
         if DATA.exists():
             backup = DATA.parent / 'backups' / f'expo-before-catalog-{datetime.datetime.now():%Y%m%d-%H%M%S}.json'
             backup.parent.mkdir(exist_ok=True)
             shutil.copy2(DATA, backup)
-            print(f'已备份：{backup}')
+            print(m['backup'].format(p=backup))
         cols['fairs'] = {i: v for i, v in old.items() if i not in removed} | {i: new[i] for i in added + list(changed)}
         if meta:
             cols.setdefault('meta', {})['catalog'] = meta
@@ -168,7 +195,7 @@ def main():
         tmp = DATA.with_suffix('.tmp')
         tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
         tmp.replace(DATA)
-        print(f'已写入 {DATA}')
+        print(m['written'].format(p=DATA))
 
 
 if __name__ == '__main__':

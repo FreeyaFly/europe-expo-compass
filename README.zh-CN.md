@@ -49,6 +49,7 @@ macOS 或 Linux：运行 `python3 tools/update_catalog.py --apply`，再运行 `
 | 执行 | `python tools/update_catalog.py --apply` | 把目录合并进你的数据。你的状态、笔记和设置永远不会被改动。 |
 
 有些网站会拒绝脚本访问，报告里会列出它们的链接，手动打开看就行。
+命令行工具的提示和报告也有中英两种语言：默认跟随你在页面上选的语言，其次跟随系统语言，也可以用 `--lang zh` / `--lang en` 指定。
 
 ## 目录是怎么整理的
 
@@ -74,7 +75,7 @@ tools/build.py         由 src/ 生成 app/index.html
 tools/update_catalog.py   校验 catalog/fairs.json 并合并进你的数据
 tools/check_updates.py    对照官网检查展会目录
 tools/import_backup.py    从导出的备份恢复你的状态和笔记
-tests/                 端到端测试（无头 Edge）和日期识别的离线测试
+tests/                 端到端测试（无头 Edge）、日期识别和工具语言的离线测试
 catalog/fairs.json     展会目录
 ```
 

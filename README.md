@@ -53,7 +53,8 @@ On macOS or Linux: run `python3 tools/update_catalog.py --apply`, then `python3 
 | Apply | `python tools/update_catalog.py --apply` | Merges the catalogue into your data. Your status, notes and settings are never touched. |
 
 Some sites refuse automated requests; the report lists them so you can open them by hand.
-The command-line tools currently print their messages in Chinese.
+The command-line tools speak English or Chinese: the language chosen in the app, or the system language, or
+`--lang en` / `--lang zh`.
 
 ## How the catalogue is built
 
@@ -82,7 +83,7 @@ tools/build.py         builds app/index.html from src/
 tools/update_catalog.py   validates catalog/fairs.json and merges it into your data
 tools/check_updates.py    checks the catalogue against official websites
 tools/import_backup.py    restores your status / notes from an exported backup
-tests/                 end-to-end test (headless Edge) and offline tests for the date check
+tests/                 end-to-end test (headless Edge), offline tests for the date check and the tool languages
 catalog/fairs.json     the fair catalogue
 ```
 

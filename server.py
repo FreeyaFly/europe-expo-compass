@@ -1,10 +1,10 @@
-"""Europe Expo Compass · 本地程序
+"""Europe Expo Compass · local program
 
-只在本机 127.0.0.1 上运行：提供展会页面，并把数据保存在 data/expo.json。
-每天第一次修改前，自动把当天的数据复制一份到 data/backups/（保留最近 30 天）。
+Runs on 127.0.0.1 only: serves the app page and keeps all data in data/expo.json.
+Before the first change of each day it copies the data file to data/backups/ (the last 30 days are kept).
 
-用法：双击「Start Expo Compass.bat」即可；也可以手动运行
-    python server.py [--port 8766] [--data 数据文件夹]
+Usage: double-click "Start Expo Compass.bat", or run
+    python server.py [--port 8766] [--data <data folder>] [--lang zh|en]
 """
 import argparse
 import datetime
@@ -173,21 +173,31 @@ class Handler(BaseHTTPRequestHandler):
         self._doc_request('DELETE')
 
 
+MSG = {
+    'zh': {'busy': '端口 {port} 已被占用：Expo Compass 可能已经在运行。', 'running': 'Expo Compass 正在运行：{url}   数据：{data}'},
+    'en': {'busy': 'Port {port} is already in use: Expo Compass may already be running.', 'running': 'Expo Compass is running: {url}   data: {data}'},
+}
+
+
 def main():
-    ap = argparse.ArgumentParser(description='Europe Expo Compass 本地程序')
+    ap = argparse.ArgumentParser(description='Europe Expo Compass local program')
     ap.add_argument('--port', type=int, default=8766)
     ap.add_argument('--data', default=str(ROOT / 'data'))
+    ap.add_argument('--lang', choices=('zh', 'en'), help="message language (default: the app's language, then the system's)")
     ap.add_argument('--test', action='store_true', help=argparse.SUPPRESS)
     args = ap.parse_args()
     Handler.test_mode = args.test
     Handler.store = Store(Path(args.data))
     Handler.port = args.port
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import cli_lang
+    m = MSG[args.lang or cli_lang.pick([], data_file=Handler.store.file)]
     try:
         server = HTTPServer(('127.0.0.1', args.port), Handler)
     except OSError:
-        print(f'端口 {args.port} 已被占用：Expo Compass 可能已经在运行。', file=sys.stderr)
+        print(m['busy'].format(port=args.port), file=sys.stderr)
         sys.exit(1)
-    print(f'Expo Compass 正在运行：http://127.0.0.1:{args.port}/   数据：{Handler.store.file}')
+    print(m['running'].format(url=f'http://127.0.0.1:{args.port}/', data=Handler.store.file))
     server.serve_forever()
 
 
