@@ -15,6 +15,7 @@ Rules:
 import datetime
 import json
 import os
+import re
 import shutil
 import sys
 import urllib.error
@@ -31,6 +32,8 @@ INDUSTRIES = {'tech', 'telecom', 'finance', 'energy', 'industry', 'logistics', '
               'fashion', 'sport', 'maritime', 'retail', 'policy', 'media'}
 COUNTRIES = {'NL', 'BE', 'DE', 'FR', 'GB', 'ES', 'IT', 'CH', 'AT', 'DK', 'SE', 'FI', 'NO', 'IS', 'IE', 'PT', 'PL', 'CZ',
              'LU', 'HU', 'GR', 'RO', 'BG', 'HR', 'SI', 'SK', 'EE', 'LV', 'LT', 'CY', 'MT'}
+CJK = re.compile(r'[　-鿿＀-￯]')
+TEXT_FIELDS = ['name', 'highlight', 'ticket', 'venue', 'exhibitors', 'visitors', 'language']
 REQUIRED = ['id', 'name', 'start', 'end', 'city', 'country', 'venue', 'url', 'industries', 'type', 'scale', 'audience',
             'verify', 'verifiedAt', 'sourceUrl', 'series', 'cycle', 'eventStatus', 'scaleBasis', 'schemaVersion']
 ENUMS = {'type': {'trade', 'conf', 'expoconf'}, 'scale': {'flagship', 'large', 'medium', 'boutique'},
@@ -63,6 +66,23 @@ def check(catalog):
         for d in f.get('deadlines', []):
             if not {'label', 'date'} <= set(d):
                 errors.append(f'{fid}: deadline needs label and date')
+        # every Chinese text needs an English version in `en`, so the English UI never shows Chinese
+        en = f.get('en')
+        if not isinstance(en, dict):
+            errors.append(f'{fid}: missing en (English texts)')
+            continue
+        for k in TEXT_FIELDS:
+            v = f.get(k)
+            if isinstance(v, str) and CJK.search(v):
+                if not en.get(k):
+                    errors.append(f'{fid}: {k} is Chinese but en.{k} is missing')
+                elif CJK.search(en[k]):
+                    errors.append(f'{fid}: en.{k} still contains Chinese')
+        labels = [d.get('label', '') for d in f.get('deadlines', [])]
+        if any(CJK.search(x) for x in labels):
+            en_labels = en.get('deadlines') or []
+            if len(en_labels) != len(labels) or any(CJK.search(x) for x in en_labels):
+                errors.append(f'{fid}: en.deadlines must give one English label per deadline')
     return errors
 
 

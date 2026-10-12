@@ -10,6 +10,7 @@
 
   async function run() {
     await until(() => document.querySelectorAll('.fair').length > 0);
+    setLang('zh', false);  // the checks below read the Chinese UI; the English one is checked further down
     const n = +(document.querySelector('#rcount').textContent.match(/\/ (\d+)/) || [])[1];
     ok(n > 100, `catalogue loaded (${n} fairs)`);
     ok(/目录更新于 \d{4}-\d\d-\d\d/.test(document.querySelector('#upd').textContent), 'catalogue date shown');
@@ -58,6 +59,55 @@
     document.querySelector('#st [data-st="interested"]').click();
     document.querySelector('#x').click();
     ok(await until(async () => (((await saved()).plans || {})['ade-2026'] || {}).status === 'interested'), 'last click wins');
+
+    // ---- English UI: no Chinese character may be left anywhere on screen (user notes excepted) ----
+    const CJK = /[　-鿿＀-￯]/;
+    const cjkIn = el => (el.innerText.match(/[^\n]*[　-鿿＀-￯][^\n]*/g) || []).slice(0, 3).join(' | ');
+    document.querySelector('[data-r="all"]').click();
+    document.querySelector('[data-q="past"]').click();
+    document.querySelector('#lang').click();
+    ok(document.documentElement.lang === 'en' && document.querySelector('#lang').textContent === '中文', 'switched to English');
+    ok(await until(async () => ((((await saved()).settings || {}).prefs || {}).lang === 'en')), 'language choice saved');
+    ok(document.querySelector('#rcount').textContent.startsWith('Showing') && document.querySelector('#upd').textContent.startsWith('Catalogue updated'), 'header and counter in English');
+    // the "中文" switch button is meant to stay in Chinese, so Chinese readers can find it
+    const wrapText = el => el.innerText.replace(document.querySelector('#lang').innerText, '');
+    ok(!CJK.test(wrapText(document.querySelector('.wrap'))), 'list view has no Chinese (except the 中文 button): ' + cjkIn(document.querySelector('main')));
+    for (const dd of ['countries', 'months', 'inds', 'types', 'scales', 'hl']) {
+      document.querySelector(`[data-dd="${dd}"]`).click();
+      const panel = document.querySelector('.ddpanel');
+      ok(panel && !CJK.test(panel.innerText), `filter "${dd}" has no Chinese: ` + (panel ? cjkIn(panel) : 'no panel'));
+      document.querySelector(`[data-dd="${dd}"]`).click();
+    }
+    document.querySelector('[data-dd="countries"]').click();
+    document.querySelector('.opt[data-v="DE"]').click();
+    document.body.click();
+    ok(!CJK.test(document.querySelector('#active').innerText), 'active filter pills in English');
+    document.querySelector('#clear').click();
+    document.querySelector('#v-tl').click();
+    ok(!CJK.test(document.querySelector('#out').innerText), 'timeline has no Chinese: ' + cjkIn(document.querySelector('#out')));
+    document.querySelector('#v-list').click();
+    // every fair's detail panel, in English (ade-2026 has a Chinese note written above, so it is skipped)
+    const leaks = [];
+    for (const f of fairs) {
+      if (f.id === 'ade-2026') continue;
+      openDetail(f.id);
+      const text = document.querySelector('#drawer').innerText;
+      if (CJK.test(text)) leaks.push(f.id + ': ' + cjkIn(document.querySelector('#drawer')));
+      closeDetail();
+    }
+    ok(!leaks.length, `all ${fairs.length - 1} detail panels in English` + (leaks.length ? ' — ' + leaks.slice(0, 3).join(' || ') : ''));
+    openDetail('formnext-2026');
+    ok(document.querySelector('#drawer').innerText.includes('early-bird rate ends'), 'deadline label in English');
+    closeDetail();
+    ok(buildIcs([fairs.find(f => f.id === 'ecr-2027')]).includes('SUMMARY:ECR 2027 – European Congress of Radiology'), 'calendar export uses English names');
+    // search finds fairs by Chinese and by English words in either language
+    const search = s => { const i = document.querySelector('#q'); i.value = s; i.dispatchEvent(new Event('input')); return +document.querySelector('#rcount').textContent.match(/Showing (\d+)/)[1]; };
+    ok(search('radiology') === 1 && search('放射学') === 1, 'search works with English and Chinese words');
+    search('');
+    // and back to Chinese
+    document.querySelector('#lang').click();
+    ok(document.documentElement.lang === 'zh-CN' && document.querySelector('#rcount').textContent.startsWith('显示'), 'switched back to Chinese');
+    ok(document.querySelector('.fair[data-id="ecr-2027"] .name').textContent === 'ECR 2027 欧洲放射学大会', 'Chinese names back');
   }
 
   window.addEventListener('load', () => {

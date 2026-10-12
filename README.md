@@ -1,14 +1,14 @@
 # Europe Expo Compass
 
+English · [中文](README.zh-CN.md)
+
 A local, offline browser for European B2B trade fairs and industry conferences: filter by country, month,
 industry, type and size, see them on a timeline, keep your own status and notes per fair, and export your
 plans to a calendar. Every date in the catalogue was checked on the organiser's or venue's own website.
 
 ![Europe Expo Compass](docs/screenshot.png)
 
-**中文简介**：一个在本机离线运行的欧洲 B2B 展会与行业会议浏览器。可以按国家、月份、行业、类型、规模筛选，
-用时间轴查看，给每个展会记录自己的状态和笔记，并导出到日历。目录里的每个日期都在主办方或场馆官网上核实过。
-界面是中文的（城市和国家用英文）。
+The interface is available in English and Chinese (switch in the top-right corner).
 
 ## Features
 
@@ -21,6 +21,8 @@ plans to a calendar. Every date in the catalogue was checked on the organiser's 
   fair. Notes from earlier editions of the same fair are shown next to the current one.
 - **Calendar**: an "add to Google Calendar" link per fair, and `.ics` export of your going / registered fairs or
   of the current list.
+- **English / Chinese**: the whole interface and every fair description in both languages. The first visit
+  follows the browser language; your choice is remembered. Search finds fairs by English or Chinese words.
 - **Offline and private**: runs on `127.0.0.1` only; your data stays in one JSON file on your computer, with a
   daily backup.
 - **Update check**: a script opens every fair's official page and reports dates that may have changed and next
@@ -37,7 +39,7 @@ python tools\update_catalog.py --apply
 ```
 
 The last command loads the catalogue into your local data file (`data\expo.json`). Then double-click
-**`启动 Expo Compass.bat`**: it starts the local server and opens the app in an Edge app window.
+**`Start Expo Compass.bat`**: it starts the local server and opens the app in an Edge app window.
 
 On macOS or Linux: run `python3 tools/update_catalog.py --apply`, then `python3 server.py` and open
 <http://127.0.0.1:8766/> in a browser.
@@ -46,11 +48,12 @@ On macOS or Linux: run `python3 tools/update_catalog.py --apply`, then `python3 
 
 | Step | Command | What it does |
 |---|---|---|
-| Check | double-click `检查展会更新.bat` or `python tools/check_updates.py` | Opens each fair's official page, checks the stored dates are still there, looks for next editions, writes `reports/check-<date>.md`. Changes nothing. |
+| Check | double-click `Check for Updates.bat` or `python tools/check_updates.py` | Opens each fair's official page, checks the stored dates are still there, looks for next editions, writes `reports/check-<date>.md`. Changes nothing. |
 | Update | `git pull`, then `python tools/update_catalog.py` | Shows what changed in `catalog/fairs.json` (added / changed / removed). |
 | Apply | `python tools/update_catalog.py --apply` | Merges the catalogue into your data. Your status, notes and settings are never touched. |
 
 Some sites refuse automated requests; the report lists them so you can open them by hand.
+The command-line tools currently print their messages in Chinese.
 
 ## How the catalogue is built
 
@@ -66,7 +69,8 @@ Some sites refuse automated requests; the report lists them so you can open them
 Each fair is one record in [`catalog/fairs.json`](catalog/fairs.json). Main fields: `id` (never changes),
 `name`, `start`, `end`, `city`, `country`, `venue`, `url`, `industries`, `type`, `scale`, `scaleBasis`,
 `exhibitors`, `visitors`, `ticket`, `highlight`, `verify`, `verifiedAt`, `sourceUrl`, `series`, `cycle`,
-`eventStatus`, `deadlines`.
+`eventStatus`, `deadlines`, and `en` (English versions of every Chinese text field; `update_catalog.py` refuses a
+catalogue where one is missing).
 
 ## Project layout
 

@@ -3,7 +3,7 @@
 只在本机 127.0.0.1 上运行：提供展会页面，并把数据保存在 data/expo.json。
 每天第一次修改前，自动把当天的数据复制一份到 data/backups/（保留最近 30 天）。
 
-用法：双击「启动 Expo Compass.bat」即可；也可以手动运行
+用法：双击「Start Expo Compass.bat」即可；也可以手动运行
     python server.py [--port 8766] [--data 数据文件夹]
 """
 import argparse

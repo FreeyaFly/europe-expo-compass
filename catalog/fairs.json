@@ -44,7 +44,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "TechEx Europe (AI & Big Data Expo Europe and 7 co-located shows)",
+    "highlight": "8 co-located shows on AI, big data, cloud, cyber security, IoT and more. The free pass covers the expo and part of the talks; speakers from Shell, AXA, IKEA and BNP Paribas.",
+    "ticket": "Free Pass: free; Gold Pass €1,199",
+    "visitors": "8,000+ (all 8 shows)",
+    "language": "English"
+   }
   },
   {
    "id": "mro-europe-2026",
@@ -77,7 +84,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest aviation maintenance (MRO) show: conference 27–28 Oct, exhibition 28–29 Oct. Airlines, lessors and OEMs attend.",
+    "ticket": "Price not listed on the official website",
+    "language": "English"
+   }
   },
   {
    "id": "ispo-2026",
@@ -110,7 +122,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The bellwether of the sporting goods industry, now in Amsterdam instead of Munich. Leaders Summit on 3 Nov, expo on 4–5 Nov. An aggregator listed 26–28 Nov; the official dates are used here.",
+    "ticket": "Price not listed (registration required)",
+    "language": "English"
+   }
   },
   {
    "id": "logistica-next-2026",
@@ -143,7 +160,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Two Dutch shows on logistics and supply-chain IT, held together; mostly Dutch logistics technology companies. Size figures not yet verified.",
+    "ticket": "See the organiser's page",
+    "language": "Mostly Dutch"
+   }
   },
   {
    "id": "intermodal-europe-2026",
@@ -176,7 +198,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Trade show for containers and intermodal transport. The official site could not be reached; dates come from aggregators only, so check again before travelling.",
+    "ticket": "Not yet verified",
+    "language": "English"
+   }
   },
   {
    "id": "metstrade-2026",
@@ -208,7 +235,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading trade show for marine and yacht equipment.",
+    "ticket": "Price not listed (registration required)",
+    "visitors": "from 140+ countries",
+    "language": "English"
+   }
   },
   {
    "id": "oeec-2026",
@@ -248,7 +281,16 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "OEEC – Offshore Energy Exhibition & Conference",
+    "highlight": "Offshore wind, hydrogen and CCS in one place, with a concentration of North-West European energy companies.",
+    "ticket": "Early-bird tickets on sale; price not listed",
+    "venue": "RAI Amsterdam (from aggregators)",
+    "exhibitors": "about 550+ (aggregator)",
+    "visitors": "about 12,000 (aggregator)",
+    "language": "English"
+   }
   },
   {
    "id": "horecava-2027",
@@ -280,7 +322,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The Netherlands' largest hospitality and food-service show: 60,000 trade visitors in four days.",
+    "ticket": "Registration opens in mid-November 2026",
+    "language": "Mostly Dutch"
+   }
   },
   {
    "id": "bouwbeurs-2027",
@@ -312,7 +359,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The Netherlands' largest construction show. Dates from the Jaarbeurs venue calendar; size figures not yet verified.",
+    "ticket": "Not yet verified",
+    "language": "Mostly Dutch"
+   }
   },
   {
    "id": "aquatech-2027",
@@ -345,7 +397,13 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of the most important water technology shows worldwide, held every two years.",
+    "ticket": "Free to visit (registration required)",
+    "exhibitors": "about 900 (2025 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "pte-2027",
@@ -378,7 +436,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Trade show for airports and passenger terminals, attended by airport operators and equipment suppliers.",
+    "ticket": "Conference tickets sold separately; registration required for the expo",
+    "language": "English"
+   }
   },
   {
    "id": "zorg-ict-2027",
@@ -411,7 +474,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Dutch healthcare IT show, held alongside Zorg & HR. Size figures not yet verified.",
+    "ticket": "Not yet verified",
+    "language": "Dutch"
+   }
   },
   {
    "id": "sial-paris-2026",
@@ -443,7 +511,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of the world's largest food trade shows, held every two years; opens on Saturday 17 Oct.",
+    "ticket": "Paid tickets",
+    "exhibitors": "about 7,500 (2024 edition, J-messe)",
+    "visitors": "about 285,000 (2024 edition, J-messe)",
+    "language": "English / French"
+   }
   },
   {
    "id": "mapic-2026",
@@ -476,7 +551,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "International market for retail real estate and brand expansion, focused on meetings between retailers and developers.",
+    "ticket": "Paid (price not listed)",
+    "visitors": "4,000 people (1,800 retailers)",
+    "language": "English"
+   }
   },
   {
    "id": "euronaval-2026",
@@ -509,7 +590,13 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Naval and maritime defence show, held every two years. The official site could not be reached; dates come from aggregators only.",
+    "ticket": "Professionals only; register at least 48 hours in advance",
+    "exhibitors": "about 450 (aggregator)",
+    "language": "English / French"
+   }
   },
   {
    "id": "tech-show-paris-2026",
@@ -541,7 +628,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Tech Show Paris 2026 (5 co-located shows)",
+    "highlight": "One badge for Cloud & AI Infrastructure, DevOps Live, Cloud & Cyber Security, Data & AI Leaders Summit and Data Centre World.",
+    "ticket": "Free for staff of user companies; vendors' sales and marketing staff pay",
+    "language": "Mostly French"
+   }
   },
   {
    "id": "maison-objet-2027-01",
@@ -574,7 +667,13 @@
    "cycle": "semiannual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Maison&Objet Paris (January edition)",
+    "highlight": "The global reference show for home design and lifestyle. The official site could not be opened; dates come from aggregators only.",
+    "ticket": "Not yet verified",
+    "language": "English / French"
+   }
   },
   {
    "id": "premiere-vision-2027-01",
@@ -606,7 +705,14 @@
    "cycle": "semiannual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Première Vision Paris (January edition)",
+    "highlight": "The leading show for fashion fabrics and the fashion supply chain, attended by brand designers and buyers.",
+    "ticket": "Free e-pass",
+    "exhibitors": "nearly 1,000",
+    "language": "English / French"
+   }
   },
   {
    "id": "waicf-2027",
@@ -639,7 +745,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of Europe's largest conferences on business applications of AI, with 200+ speakers; organised by Informa from 2027.",
+    "ticket": "The official website only offers \"register interest\"",
+    "language": "English"
+   }
   },
   {
    "id": "jec-world-2027",
@@ -672,7 +783,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading composites show, covering the supply chains for aerospace, automotive and wind-energy materials.",
+    "ticket": "Price not listed on the official website",
+    "visitors": "about 46,000",
+    "language": "English"
+   }
   },
   {
    "id": "incyber-europe-2027",
@@ -705,7 +822,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Large European forum on cyber security and digital trust (formerly FIC), with security leaders from government and business. Size figures not yet verified.",
+    "ticket": "Price not listed on the official website",
+    "language": "French / English"
+   }
   },
   {
    "id": "global-industrie-2027",
@@ -737,7 +859,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "France's largest manufacturing show, with 800+ talks and a dedicated jobs area (8,000 job seekers).",
+    "ticket": "Price not listed on the official website",
+    "language": "Mostly French"
+   }
   },
   {
    "id": "mipim-2027",
@@ -770,7 +897,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading real estate investment event; 80% of participants are C-level.",
+    "ticket": "Paid (several pass levels)",
+    "visitors": "20,000+ (incl. 5,000+ investors)",
+    "language": "English"
+   }
   },
   {
    "id": "wef-2027",
@@ -803,7 +936,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "World Economic Forum Annual Meeting 2027",
+    "highlight": "The main meeting is by invitation only; the side events held in Davos at the same time are open. The official site could not be reached; dates come from the Davos tourist office and aggregators.",
+    "ticket": "By invitation only; many open side events at the same time",
+    "visitors": "about 3,000 (invited)",
+    "language": "English"
+   }
   },
   {
    "id": "logistics-automation-zh-2027",
@@ -836,7 +976,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Swiss B2B show for logistics and automation. Aggregators list 27–29 Jan; the official dates are 27–28 Jan.",
+    "ticket": "Free entry for newsletter subscribers",
+    "language": "German"
+   }
   },
   {
    "id": "scsd-2027",
@@ -869,7 +1014,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Switzerland's annual cyber security conference, attended by security leaders from government and business.",
+    "ticket": "Price not listed on the official website",
+    "exhibitors": "about 90",
+    "language": "German / French / English"
+   }
   },
   {
    "id": "watches-wonders-2027",
@@ -902,7 +1053,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Annual launch event of the world's top watch brands. The split between trade days and public days is not yet verified.",
+    "ticket": "Not yet verified",
+    "venue": "Palexpo (not given on the official homepage)",
+    "exhibitors": "about 75 brands",
+    "language": "English / French"
+   }
   },
   {
    "id": "swiss-biotech-day-2027",
@@ -934,7 +1092,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Switzerland's annual biotech conference, with participants from 58 countries and one-to-one partnering meetings.",
+    "ticket": "Price not listed on the official website",
+    "visitors": "3,500+ (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "alles-fuer-den-gast-2026",
@@ -966,7 +1130,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Austria's largest hospitality and food-service show.",
+    "ticket": "See the official website's ticket page",
+    "visitors": "about 36,000 trade visitors",
+    "language": "German"
+   }
   },
   {
    "id": "enlit-europe-2026",
@@ -1008,7 +1178,16 @@
      "label": "Summit Pass Smart Rate 截止",
      "date": "2026-10-18"
     }
-   ]
+   ],
+   "en": {
+    "highlight": "Europe's flagship event for power and the energy transition, covering grids, storage and energy digitalisation. The official site shows no size figures.",
+    "ticket": "Summit Pass is paid",
+    "venue": "Vienna (venue not given on the official website)",
+    "language": "English",
+    "deadlines": [
+     "Summit Pass Smart Rate ends"
+    ]
+   }
   },
   {
    "id": "wsed-2027",
@@ -1041,7 +1220,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Long-running European conference on energy efficiency and renewable energy policy, with the European Pellet Conference and an exhibition alongside.",
+    "ticket": "See the official website's Fees page",
+    "visitors": "650+ (60+ countries)",
+    "language": "English / German"
+   }
   },
   {
    "id": "ecr-2027",
@@ -1074,7 +1259,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "ECR 2027 – European Congress of Radiology",
+    "highlight": "Europe's largest medical imaging congress, with many medical AI and imaging equipment companies.",
+    "ticket": "Registration from 1 Sep; reduced fees for ESR members",
+    "venue": "Vienna (2026 edition at Austria Center Vienna)",
+    "visitors": "22,418 (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "vienna-motor-symposium-2027",
@@ -1106,7 +1299,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The leading annual conference on automotive powertrains (48th edition), attended by R&D executives of carmakers and major suppliers.",
+    "ticket": "Price not listed on the official website",
+    "visitors": "1,000+ decision-makers",
+    "language": "German / English"
+   }
   },
   {
    "id": "hydrogen-expo-2026",
@@ -1139,7 +1338,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Hydrogen Technology World Expo 2026 (with Carbon Capture Technology Expo)",
+    "highlight": "Large trade show for hydrogen and carbon capture; the expo is free to attend.",
+    "ticket": "Expo free; conference tickets sold separately",
+    "language": "English"
+   }
   },
   {
    "id": "it-sa-2026",
@@ -1171,7 +1376,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of Europe's most important IT security shows, with many security leaders from German companies. Size figures not yet verified.",
+    "ticket": "Price not listed; some talks are free",
+    "language": "German / English"
+   }
   },
   {
    "id": "electronica-2026",
@@ -1204,7 +1414,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading trade show for electronic components and systems, held every two years.",
+    "ticket": "Cheaper when bought online in advance",
+    "exhibitors": "3,480+ (2024 edition)",
+    "visitors": "80,000+ (2024 edition)",
+    "language": "German / English"
+   }
   },
   {
    "id": "eurotier-2026",
@@ -1237,7 +1454,12 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for livestock equipment and technology, held every two years. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English"
+   }
   },
   {
    "id": "medica-2026",
@@ -1270,7 +1492,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "MEDICA 2026 (alongside COMPAMED)",
+    "highlight": "The world's largest medical trade fair; Hall 17 is the Digital Health Hub, with many health data and AI companies.",
+    "ticket": "See the official ticket page; the talks are free for visitors",
+    "language": "English / German"
+   }
   },
   {
    "id": "euro-finance-week-2026",
@@ -1303,7 +1531,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Euro Finance Week 2026 (29th edition)",
+    "highlight": "Frankfurt's annual week of finance conferences: opening conference on 16 Nov, EURO FINANCE Tech Day on 18 Nov, Frankfurt European Banking Congress on 20 Nov.",
+    "ticket": "Registration request required",
+    "venue": "Steigenberger Icon Frankfurter Hof and other venues",
+    "language": "German / English"
+   }
   },
   {
    "id": "formnext-2026",
@@ -1341,7 +1576,15 @@
      "label": "Day / Expo Pass 早鸟价截止",
      "date": "2026-10-22"
     }
-   ]
+   ],
+   "en": {
+    "highlight": "The world's leading show for additive manufacturing (industrial 3D printing). Size figures not yet verified.",
+    "ticket": "Day / Expo Pass; Premium Pass also available",
+    "language": "English / German",
+    "deadlines": [
+     "Day / Expo Pass early-bird rate ends"
+    ]
+   }
   },
   {
    "id": "sps-2026",
@@ -1379,7 +1622,15 @@
      "label": "早鸟价截止",
      "date": "2026-10-12"
     }
-   ]
+   ],
+   "en": {
+    "highlight": "Europe's core show for industrial automation and digitalisation.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English",
+    "deadlines": [
+     "Early-bird rate ends"
+    ]
+   }
   },
   {
    "id": "bau-2027",
@@ -1411,7 +1662,12 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for architecture, materials and building systems, held every two years. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English"
+   }
   },
   {
    "id": "heimtextil-2027",
@@ -1444,7 +1700,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "International ordering fair for home and interior textiles.",
+    "ticket": "See the official website's ticket page",
+    "visitors": "48,000 (2026 edition)",
+    "language": "English / German"
+   }
   },
   {
    "id": "ambiente-2027",
@@ -1476,7 +1738,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading consumer goods trade fair (home, dining, gifts), aimed at retail buyers. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "English / German"
+   }
   },
   {
    "id": "ism-2027",
@@ -1509,7 +1776,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "ISM 2027 (sweets and snacks)",
+    "highlight": "The world's leading show for sweets and snacks, with ISM Ingredients and ISM Manufacturing alongside. Size figures not yet verified.",
+    "ticket": "Trade visitors only (see the official definition)",
+    "language": "English / German"
+   }
   },
   {
    "id": "fruit-logistica-2027",
@@ -1542,7 +1815,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for the fresh produce business. Size figures not yet verified.",
+    "ticket": "Trade visitors register and buy tickets",
+    "language": "English"
+   }
   },
   {
    "id": "msc-2027",
@@ -1574,7 +1852,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Munich Security Conference (MSC) 2027",
+    "highlight": "The leading conference on global security policy; the main conference is by invitation only, and several open side events take place at the same time.",
+    "ticket": "By invitation only; several open side events at the same time",
+    "language": "English"
+   }
   },
   {
    "id": "biofach-2027",
@@ -1606,7 +1890,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading trade fair for organic food. Size figures not yet verified.",
+    "ticket": "Trade visitors only",
+    "language": "English / German"
+   }
   },
   {
    "id": "e-world-2027",
@@ -1639,7 +1928,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's leading energy trade fair, with many companies in energy trading, grids and energy IT.",
+    "ticket": "See the official website's ticket page",
+    "exhibitors": "1,100+ (2026 edition)",
+    "language": "German / English"
+   }
   },
   {
    "id": "eurocis-2027",
@@ -1672,7 +1967,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Retail technology show: checkout, retail analytics and e-commerce systems. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English"
+   }
   },
   {
    "id": "prowein-2027",
@@ -1704,7 +2004,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading trade fair for wine and spirits.",
+    "ticket": "Trade visitors only",
+    "visitors": "from 140+ countries",
+    "language": "English / German"
+   }
   },
   {
    "id": "internorga-2027",
@@ -1736,7 +2042,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Germany's leading hospitality and food-service show. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German"
+   }
   },
   {
    "id": "ish-2027",
@@ -1769,7 +2080,12 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for HVAC and bathrooms (heat pumps, building efficiency), held every two years. Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English"
+   }
   },
   {
    "id": "embedded-world-2027",
@@ -1802,7 +2118,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for embedded systems, with many chip, IoT and edge-AI companies. Size figures not yet verified.",
+    "ticket": "Book a ticket on the official website",
+    "language": "English / German"
+   }
   },
   {
    "id": "logimat-2027",
@@ -1835,7 +2156,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's leading show for intralogistics (warehousing, automation, logistics software). Size figures not yet verified.",
+    "ticket": "See the official website's ticket page",
+    "language": "German / English"
+   }
   },
   {
    "id": "hannover-messe-2027",
@@ -1869,7 +2195,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's largest industrial trade fair. Spain is the 2027 partner country; opening ceremony on the evening of 4 Apr.",
+    "ticket": "See the official website's ticket page",
+    "language": "English / German"
+   }
   },
   {
    "id": "dmea-2027",
@@ -1902,7 +2233,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's leading digital health show; the official site lists Munich for 2027 (previously Berlin).",
+    "ticket": "Tickets not yet on sale",
+    "venue": "Munich (venue not given on the official website)",
+    "exhibitors": "about 900",
+    "visitors": "about 22,000 trade visitors",
+    "language": "German / English"
+   }
   },
   {
    "id": "smart-city-expo-2026",
@@ -1936,7 +2275,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading smart city event, with city governments, technology companies and urban data projects. The attendance figures on the official site contradict each other and are not used.",
+    "ticket": "Early-bird rate ended on 30 Sep; see the official Passes page",
+    "language": "English"
+   }
   },
   {
    "id": "tech-show-madrid-2026",
@@ -1968,7 +2312,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Tech Show Madrid 2026 (7 co-located shows)",
+    "highlight": "7 co-located shows including Big Data & AI World, Cloud & AI Infrastructure, Cyber Security World and Data Centre World; Madrid Tech Week runs alongside (28 Oct – 5 Nov).",
+    "ticket": "Registration required (the official website does not say if it is free)",
+    "visitors": "27,000+ (about 32% C-level)",
+    "language": "Mostly Spanish"
+   }
   },
   {
    "id": "genera-2026",
@@ -2000,7 +2351,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Spain's leading energy and environment show, focused on solar, storage and energy efficiency.",
+    "ticket": "See the official website",
+    "visitors": "59,000+ trade visitors",
+    "language": "Spanish / English"
+   }
   },
   {
    "id": "ise-2027",
@@ -2033,7 +2390,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "ISE 2027 (Integrated Systems Europe)",
+    "highlight": "The world's leading show for audiovisual and systems integration (displays, meeting systems, smart buildings).",
+    "ticket": "Registration required (the official website does not say if it is free)",
+    "visitors": "92,176 (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "mwc-2027",
@@ -2066,7 +2430,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading mobile and technology event, with the startup event 4YFN alongside.",
+    "ticket": "Price not listed on the official website",
+    "exhibitors": "about 2,900 (incl. sponsors and partners)",
+    "visitors": "about 105,000",
+    "language": "English"
+   }
   },
   {
    "id": "seafood-expo-global-2027",
@@ -2099,7 +2470,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's largest seafood trade show.",
+    "ticket": "See the official website",
+    "exhibitors": "2,290 (2026 edition)",
+    "visitors": "35,500+ (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "ecomondo-2026",
@@ -2132,7 +2510,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Southern Europe's leading show for the circular economy and environmental technology (waste, water, bio-economy). Size figures not yet verified.",
+    "ticket": "See the official Ticket & info page",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "smau-milano-2026",
@@ -2164,7 +2547,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Italy's annual show on business digitalisation and innovation, focused on matching startups with large companies. Size figures not yet verified.",
+    "ticket": "Not yet verified",
+    "venue": "Milan (venue not given on the official homepage)",
+    "language": "Italian"
+   }
   },
   {
    "id": "salone-pagamenti-2026",
@@ -2197,7 +2586,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Italy's annual payments and fintech conference, with 400 speakers, organised by the Italian Banking Association.",
+    "ticket": "Registration required (the official website does not say if it is free)",
+    "venue": "Milan (venue not given on the official homepage)",
+    "exhibitors": "112 stands (2025 edition)",
+    "visitors": "16,000 (2025 edition)",
+    "language": "Italian"
+   }
   },
   {
    "id": "pitti-uomo-2027-01",
@@ -2229,7 +2626,13 @@
    "cycle": "semiannual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Pitti Immagine Uomo (January edition)",
+    "highlight": "The world's leading menswear show. Size figures not yet verified.",
+    "ticket": "Ticket and registration required",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "sigep-2027",
@@ -2261,7 +2664,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading food-service show for gelato, bakery and coffee. Size figures not yet verified.",
+    "ticket": "Register in the visitor area",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "mido-2027",
@@ -2294,7 +2702,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading eyewear show.",
+    "ticket": "Free visitor pass",
+    "visitors": "from 160 countries",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "cosmoprof-2027",
@@ -2327,7 +2741,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading B2B beauty show. Cosmopack and Perfumery & Cosmetics run 18–20 Mar; Hair & Nail & Beauty Salon runs until 21 Mar.",
+    "ticket": "See the official website",
+    "exhibitors": "3,104+ (2026 edition)",
+    "visitors": "255,000+ (2026 edition)",
+    "language": "English / Italian"
+   }
   },
   {
    "id": "vinitaly-2027",
@@ -2359,7 +2780,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Italy's leading wine show; Vinitaly and the City for the public is held separately. Size figures not yet verified.",
+    "ticket": "See the official buyer admission conditions",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "salone-mobile-2027",
@@ -2392,7 +2818,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading furniture and design fair (65th edition); the 2027 focus is the lighting show Euroluce, with Milan Design Week events across the city.",
+    "ticket": "See the official website",
+    "exhibitors": "915 (2026 edition)",
+    "visitors": "316,342 (2026 edition, about 68% international trade visitors)",
+    "language": "Italian / English"
+   }
   },
   {
    "id": "advanced-engineering-2026",
@@ -2424,7 +2857,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "UK show for advanced manufacturing and the engineering supply chain, with Lab Innovations and UK Metals Expo alongside.",
+    "ticket": "Free registration for professionals (all forums included)",
+    "visitors": "9,000+ engineers",
+    "language": "English"
+   }
   },
   {
    "id": "fintech-connect-2026",
@@ -2457,7 +2896,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The UK's largest dedicated fintech show: payments, RegTech, AI in finance and digital assets.",
+    "ticket": "Free for qualifying financial services professionals",
+    "visitors": "6,000+ (59 countries)",
+    "language": "English"
+   }
   },
   {
    "id": "techex-global-2027",
@@ -2489,7 +2934,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "TechEx Global 2027 (AI & Big Data Expo and co-located shows)",
+    "highlight": "Same organiser as TechEx Europe in Amsterdam; includes AI & Big Data Expo, Cyber Security & Cloud Expo, IoT Tech Expo and more.",
+    "ticket": "Free Pass available; senior enterprise leaders can apply for a free Enterprise Leadership Pass",
+    "language": "English"
+   }
   },
   {
    "id": "tech-show-london-2027",
@@ -2521,7 +2972,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Tech Show London 2027 (5 co-located shows)",
+    "highlight": "Big Data & AI World, Cloud & AI Infrastructure, DevOps Live, Cloud & Cyber Security Expo and Data Centre World together, with 300+ talks. Size figures not yet verified.",
+    "ticket": "See the official Visitor FAQs",
+    "language": "English"
+   }
   },
   {
    "id": "ife-2027",
@@ -2554,7 +3011,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "IFE 2027 (International Food & Drink Event)",
+    "highlight": "The UK's largest food and drink trade show, with many retail and food-service buyers.",
+    "ticket": "Trade visitor verification required",
+    "visitors": "25,000+ verified trade visitors",
+    "language": "English"
+   }
   },
   {
    "id": "ifgs-2027",
@@ -2587,7 +3051,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Innovate Finance Global Summit 2027 (IFGS)",
+    "highlight": "The main event of UK FinTech Week, bringing together UK fintech policy makers and industry leaders.",
+    "ticket": "Paid, past editions sold out; other UK FinTech Week events need separate registration",
+    "visitors": "1,500+ (70+ countries)",
+    "language": "English"
+   }
   },
   {
    "id": "retail-tech-show-2027",
@@ -2620,7 +3091,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "European retail technology show: retail data, e-commerce and in-store technology.",
+    "ticket": "Free for retailers and brands; technology vendors and students pay",
+    "visitors": "15,000 (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "horeca-expo-2026",
@@ -2652,7 +3129,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Belgium's largest hospitality and food-service show. Size figures not yet verified.",
+    "ticket": "Registration required",
+    "language": "Dutch / French"
+   }
   },
   {
    "id": "interpom-2026",
@@ -2685,7 +3167,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "International show covering the whole potato chain (growing, processing, marketing), held every two years.",
+    "ticket": "See the official website",
+    "exhibitors": "332 (15 countries)",
+    "visitors": "about 24,000 (60 countries)",
+    "language": "Dutch / English"
+   }
   },
   {
    "id": "machineering-2027",
@@ -2717,7 +3206,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Belgium's most comprehensive show for manufacturing technology and machine building. Size figures not yet verified.",
+    "ticket": "Not yet verified",
+    "language": "Dutch / French"
+   }
   },
   {
    "id": "digital-tech-summit-2026",
@@ -2753,7 +3247,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Denmark's annual digital technology summit, run by universities and companies together, for professionals and students.",
+    "ticket": "Free registration",
+    "visitors": "4,000 professionals + 1,000 students",
+    "language": "English / Danish"
+   }
   },
   {
    "id": "ndsml-summit-2026",
@@ -2792,7 +3292,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "NDSML Summit 2026 (Nordic Data Science and Machine Learning Summit)",
+    "highlight": "Nordic conference for data science and machine learning practitioners; at most 400 people on site, with speakers from Hugging Face, Zalando, Meta and others.",
+    "ticket": "Paid (prices on the official Tickets page)",
+    "venue": "Filadelfia Convention Center (also online)",
+    "visitors": "at most 400 on site",
+    "language": "English"
+   }
   },
   {
    "id": "elmia-subcontractor-2026",
@@ -2824,7 +3332,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The Nordics' largest show for manufacturing subcontracting and the supply chain (50th year). Size figures not yet verified.",
+    "ticket": "Free registration",
+    "language": "Swedish / English"
+   }
   },
   {
    "id": "slush-2026",
@@ -2857,7 +3370,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest startup and venture capital event.",
+    "ticket": "Startup €395 / Investor €1,195 / Thursday only €595",
+    "venue": "Helsinki (venue not given on the official website)",
+    "visitors": "12,000+ (about 76% founders or investors)",
+    "language": "English"
+   }
   },
   {
    "id": "ciff-2027-02",
@@ -2889,7 +3409,13 @@
    "cycle": "semiannual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "CIFF Copenhagen (February edition)",
+    "highlight": "The Nordics' largest fashion trade show (68th edition). Size figures not yet verified.",
+    "ticket": "Sign in to get a ticket",
+    "language": "English"
+   }
   },
   {
    "id": "stockholm-furniture-fair-2027",
@@ -2922,7 +3448,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The Nordics' leading furniture and interior design fair; open to trade visitors Tuesday to Friday and to the public on Friday; Stockholm Design Week runs alongside (8–14 Feb). Size figures not yet verified.",
+    "ticket": "Tickets go on sale later",
+    "language": "English / Swedish"
+   }
   },
   {
    "id": "mipcom-2026",
@@ -2954,7 +3485,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The global market for TV and streaming content, bringing together producers, platforms and distributors. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "ade-2026",
@@ -2986,7 +3522,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Amsterdam Dance Event 2026 (ADE Pro)",
+    "highlight": "The global electronic music industry conference; ADE Pro is the conference part, with concerts across the city at night. Size figures not yet verified.",
+    "ticket": "ADE Pro Pass is paid (price not listed)",
+    "venue": "Venues across the city",
+    "language": "English"
+   }
   },
   {
    "id": "wtm-london-2026",
@@ -3018,7 +3561,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of the travel industry's most important B2B events, with airlines, hotel groups and travel technology companies.",
+    "ticket": "From £79",
+    "visitors": "46,000+ (incl. 5,500+ buyers)",
+    "language": "English"
+   }
   },
   {
    "id": "bett-2027",
@@ -3051,7 +3600,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's largest education technology show.",
+    "ticket": "Free for educators and students",
+    "exhibitors": "700+ (2026 edition)",
+    "visitors": "37,000+ (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "itb-berlin-2027",
@@ -3083,7 +3639,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading travel trade show. Size figures not yet verified.",
+    "ticket": "Trade visitor tickets on sale from December 2026",
+    "language": "English / German"
+   }
   },
   {
    "id": "frankfurter-buchmesse-2027",
@@ -3115,7 +3676,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's largest book rights fair; the 2026 edition ran on 7–11 Oct, this is the next one.",
+    "ticket": "See the official website",
+    "exhibitors": "4,000 (2026 edition)",
+    "visitors": "236,000 (2026 edition)",
+    "language": "English / German"
+   }
   },
   {
    "id": "transport-logistic-2027",
@@ -3147,7 +3715,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The world's leading show for logistics, mobility and the supply chain, held every two years.",
+    "ticket": "See the official website",
+    "exhibitors": "about 2,719 (2025 edition)",
+    "visitors": "about 77,000 (2025 edition)",
+    "language": "English / German"
+   }
   },
   {
    "id": "futurebuild-2027",
@@ -3180,7 +3755,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "UK show for sustainable construction and building energy efficiency.",
+    "ticket": "See the official website",
+    "exhibitors": "500+ brands (2026 edition)",
+    "visitors": "20,700+ (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "all-energy-2027",
@@ -3212,7 +3794,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The UK's largest renewable and low-carbon energy show. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "world-hydrogen-summit-2027",
@@ -3244,7 +3831,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The flagship summit of the hydrogen industry. The official site only gives 18 May; past editions ran for three days, so check the end date before travelling. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "data-innovation-summit-2027",
@@ -3276,7 +3868,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The Nordics' largest conference for data, analytics and AI practitioners. The official homepage gives no city; past editions were in Stockholm. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "venue": "Stockholm (venue not given on the official homepage)",
+    "language": "English"
+   }
   },
   {
    "id": "tech-show-frankfurt-2027",
@@ -3308,7 +3906,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Tech Show Frankfurt 2027 (with Big Data & AI World)",
+    "highlight": "Big Data & AI World, Cloud & AI Infrastructure, Cloud & Cyber Security Expo and Data Centre World in one hall.",
+    "ticket": "See the official website",
+    "exhibitors": "330+ (2026 edition)",
+    "visitors": "8,000+ (2026 edition)",
+    "language": "German / English"
+   }
   },
   {
    "id": "chemspec-europe-2027",
@@ -3340,7 +3946,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "European trade show for fine and speciality chemicals. An aggregator listed March; the official date is May.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "london-tech-week-2027",
@@ -3373,7 +3984,15 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The UK's tech week: main stages and expo at Olympia, with many side events across London on 7–11 Jun.",
+    "ticket": "See the official website",
+    "venue": "Olympia London (7–9 Jun) + events across London",
+    "exhibitors": "250+ partners (2026 edition)",
+    "visitors": "31,600+ (2026 edition)",
+    "language": "English"
+   }
   },
   {
    "id": "money2020-europe-2027",
@@ -3406,7 +4025,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest fintech and payments event, with 2,300+ companies attending.",
+    "ticket": "Paid (early-bird rate available)",
+    "visitors": "7,500+ (2026 edition, about 1/3 C-level)",
+    "language": "English"
+   }
   },
   {
    "id": "smarter-e-europe-2027",
@@ -3438,7 +4063,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "The smarter E Europe 2027 (with Intersolar Europe)",
+    "highlight": "Europe's largest alliance of energy shows: solar, storage, e-mobility and smart energy. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "venue": "Messe München (conferences 7–8 Jun at ICM)",
+    "language": "English / German"
+   }
   },
   {
    "id": "infosecurity-europe-2027",
@@ -3470,7 +4102,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of Europe's most important cyber security shows. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "paris-air-show-2027",
@@ -3503,7 +4140,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "name": "Paris Air Show 2027",
+    "highlight": "The world's largest aerospace show, held every two years; the first days are for trade visitors, the last days are open to the public. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "venue": "Le Bourget (not given on the official homepage)",
+    "language": "English / French"
+   }
   },
   {
    "id": "vivatech-2027",
@@ -3536,7 +4180,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest technology and startup event, bringing together large companies, startups and investors.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "ai-for-good-2027",
@@ -3569,7 +4218,13 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The UN ITU's summit on applying AI, with a focus on the Sustainable Development Goals. Speakers and exhibitors for 2027 are not yet announced.",
+    "ticket": "See the official website",
+    "venue": "Geneva (2027 venue not announced; 2026 at Palexpo)",
+    "language": "English"
+   }
   },
   {
    "id": "wearedevelopers-2027",
@@ -3601,7 +4256,14 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest developer conference, with 500+ speakers.",
+    "ticket": "Congress Pass from €349 (early bird), rising closer to the event",
+    "venue": "Berlin (venue not given on the official homepage)",
+    "visitors": "15,000+ (past editions)",
+    "language": "English"
+   }
   },
   {
    "id": "iaa-mobility-2027",
@@ -3634,7 +4296,13 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest motor and mobility show, held every two years; 6 Sep is the press day, with separate tickets for trade visitors and the public. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "venue": "Munich (venue not given on the official homepage)",
+    "language": "English / German"
+   }
   },
   {
    "id": "big-data-ldn-2027",
@@ -3666,7 +4334,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "The UK's largest data and analytics show, with many data engineering, analytics platform and data governance companies. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English"
+   }
   },
   {
    "id": "dmexco-2027",
@@ -3700,7 +4373,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "Europe's largest digital marketing and advertising technology show. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "English / German"
+   }
   },
   {
    "id": "big-data-ai-paris-2027",
@@ -3732,7 +4410,12 @@
    "cycle": "annual",
    "eventStatus": "scheduled",
    "scaleBasis": "reputation",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "France's largest data and AI show. The official site shows old and new dates side by side; it gives 29–30 Sep for 2027. Size figures not yet verified.",
+    "ticket": "See the official website",
+    "language": "Mostly French"
+   }
   },
   {
    "id": "anuga-2027",
@@ -3764,7 +4447,14 @@
    "cycle": "biennial",
    "eventStatus": "scheduled",
    "scaleBasis": "figures",
-   "deadlines": []
+   "deadlines": [],
+   "en": {
+    "highlight": "One of the world's largest food and drink trade shows, held every two years, alternating with SIAL Paris.",
+    "ticket": "See the official website",
+    "exhibitors": "8,000+ (110 countries)",
+    "visitors": "145,000+ (190 countries)",
+    "language": "English / German"
+   }
   }
  ]
 }

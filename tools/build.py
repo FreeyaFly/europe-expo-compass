@@ -38,8 +38,7 @@ def build(test=False):
     page = page[:start] + page[end:]
     page = page.replace('</style>\n', '</style>\n' + LOCAL_FONTS, 1)  # right after the page's own styles
     page = rep(page, '<script>\n', f'<script>\n{local}\n</script>\n<script>\n')
-    page = rep(page, '这个页面需要登录 claude.ai 才能读取展会数据。', '连不上本地程序。请关掉这个窗口，重新双击「启动 Expo Compass.bat」。')
-    doc = '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' \
+    doc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' \
           '<style>[hidden]{display:none!important}body{margin:0}</style></head><body>\n'
     (ROOT / 'app' / 'index.html').write_text(doc + page + '\n</body></html>\n', encoding='utf-8')
     print('built app/index.html')
